@@ -1,0 +1,168 @@
+.app {
+    background-color: black;
+    color: white;
+    padding: 1px 0;
+}
+
+.playlist{
+    font-size: 32px;
+    margin: 0 50px;
+    padding: 30px;
+    // background-color: rgba(255, 255, 255, 0.1);
+}
+
+.playlist-header {
+    display: flex;
+    // align-items: center;
+}
+
+.playlist-avatar img {
+    width: 500px;
+    /* You can adjust the size as per your requirement */
+    height: 500px;
+    border-radius: 50%;
+    /* To make the avatar round if it's square */
+    margin-right: 80px;
+    /* Adjust the spacing between the avatar and the playlist info */
+}
+
+.playlist-info {
+    flex: 1;
+    /* This will make the playlist info take up the remaining space */
+}
+
+.song-list {
+    margin-top: 45px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.song-list-items-container {
+    max-height: calc(100vh - 250px);
+    /* Điều chỉnh chiều cao tối đa của container */
+    overflow: auto;
+    /* Hiển thị thanh cuộn khi nội dung vượt quá kích thước */
+    border-radius: 10px;
+}
+
+.song-list-items-container::-webkit-scrollbar {
+    width: 22px;
+    /* Độ rộng của thanh cuộn */
+}
+
+.song-list-items-container::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    /* Màu của thanh cuộn */
+    border-radius: 5px;
+    /* Bo góc của thanh cuộn */
+}
+
+.song-list-items-container::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+    /* Màu của thanh cuộn khi hover */
+}
+
+.song-list-header {
+    display: grid;
+    grid-template-columns: 40px 1fr 1fr 143.8px;
+    gap: 10px;
+    font-weight: bold;
+    padding: 15px 50px 15px 50px;
+    border-bottom: 1px solid gray;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.song-list-items {
+    list-style: none;
+    padding: 0px 20px 0px 20px;
+    // padding: 0;
+    // margin: 0;
+}
+
+.song-list-items li {
+    display: grid;
+    grid-template-columns: 40px 1fr 1fr 123px;
+    gap: 10px;
+    align-items: center;
+    /* Canh các phần tử theo chiều dọc */
+    padding: 15px 30px;
+    // margin: 5px\
+}
+
+.song-list-items li:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    /* Change the color to your preference */
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.song-title {
+    display: block;
+    /* Ensures each part is on a new line */
+}
+
+.song-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+}
+
+.song-details {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.title-artist {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    // font-weight: bold;
+}
+
+.artist {
+    color: gray;
+    font-size: 25px;
+}
+
+.play-button {
+    font-size: 60px;
+    color: white;
+    background-color: rgb(212, 51, 22);
+    height: 100px;
+    width: 300px;
+    display: flex;
+    /* Use flexbox */
+    align-items: center;
+    /* Vertically center items */
+    justify-content: center;
+    /* Horizontally center items */
+    border: 0;
+    cursor: pointer;
+    /* Optional: Show a pointer cursor on hover */
+
+    /* Optional: Add transition to smooth the hover effect */
+    transition: background-color 0.2s, color 0.2s;
+    border-radius: 50px;
+}
+
+.play-button:focus {
+    /* Remove the border when the button gains focus */
+    outline: none;
+}
+
+.play-button:hover {
+    /* Apply the styles when the button is being hovered over */
+    background-color: rgb(212, 51, 22, 0.8);
+    color: white;
+}
+
+.play-icon {
+    margin-right: 10px;
+    /* Add desired spacing (adjust the value as needed) */
+}
