@@ -2,16 +2,20 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
 import React from "react";
 import HomePage from "./Pages/Homepage.jsx";
+import View from "./Pages/View.jsx";
+import Slider from "./components/Slider.jsx";
+import PlayMusic from "./components/PlayMusic.jsx";
+import Optional from "./components/Optional.jsx";
+import { Sidebar } from "react-pro-sidebar";
 
 function App() {
   const Layout = () => {
     return (
       <>
-        {/* <Header />
-        <Outlet />
-        <ScrollButton />
-        <Footer /> */}
-        <Outlet />
+        {/* <Outlet />
+        <Sidebar />
+        <Optional />
+        <PlayMusic /> */}
       </>
     );
   };
@@ -20,9 +24,10 @@ function App() {
   const route = createBrowserRouter([
     {
       path: "/",
-      element: <Layout />,
+      // element: <Layout />,
       children: [
         { path: "/", element: <HomePage /> },
+        { path: "/view", element: <View /> },
         // {
         //   path: "/courses",
         //   element: <Courses />,
