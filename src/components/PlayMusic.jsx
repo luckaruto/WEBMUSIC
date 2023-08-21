@@ -185,7 +185,7 @@ const PlayMusic = () => {
                     Song
                   </Text>
 
-                  <div className="mt-2 flex flex-row justify-between items-start w-full ">
+                  <div className="mt-2 flex flex-row justify-between items-start w-full mb-1">
                     <Text className="text-[#FFFFFF] text-xs tracking-[0.14px] opacity-[64%]">
                       {formatTime(currentTrackMoment)}
                     </Text>
