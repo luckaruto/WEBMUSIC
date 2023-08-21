@@ -1,7 +1,9 @@
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Error, Loader, SongCard } from "../components";
 import { useGetTopChartsQuery } from "../Redux/services/spotify";
+import { useGetDownLoadMusicQuery } from "../Redux/services/downloadedsportify";
 
 const PlayNow = () => {
   const dispatch = useDispatch();
@@ -19,9 +21,9 @@ const PlayNow = () => {
       </div>
 
       <div className="flex flex-wrap sm:justify-start justify-center gap-8">
-        {data?.map((song, i) => (
+        {data?.slice(0, 10).map((song, i) => (
           <SongCard
-            key={song.key}
+            key={i}
             song={song}
             isPlaying={isPlaying}
             activeSong={activeSong}

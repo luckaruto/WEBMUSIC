@@ -23,13 +23,13 @@ const DashboardPage = () => {
 
   return (
     <>
-      <div className="bg-black flex sm:flex-col md:flex-col flex-row font-outfit sm:gap-5 md:gap-5 items-start mx-auto w-full">
+      <div className="bg-black flex flex-row font-outfit items-start mx-auto w-full">
         <Slider />
 
         <div className="relative h-screen w-full  ">
           <div className="absolute opacity-[14%] h-screen w-full bg-color_white_page "></div>
           <div className="absolute opacity-[14%] h-screen w-full bg-color_white_page "></div>
-          <div className="absolute h-[90%] overflow-auto  w-full top-[5%] ">
+          <div className="absolute h-[90%] w-full top-[5%] ">
             <div className="flex flex-row items-center justify-center w-full mt-10">
               <View />
             </div>

@@ -2,6 +2,7 @@ import React from "react";
 import Img from "./Img";
 import Button from "./Button";
 import Text from "./Text";
+import { playPause, setActiveSong } from "../Redux/features/playerSlice";
 
 import { useSelector, useDispatch } from "react-redux";
 
@@ -20,13 +21,20 @@ const formatTime = (time) => {
 
 const PlayMusic = () => {
   const dispatch = useDispatch();
+  const { activeSong, isPlaying } = useSelector((state) => state.player);
   const [state, setState] = React.useState({
     isRandom: false,
     isRepeat: false,
-    isPlay: false,
+    isPlay: isPlaying,
     playList: [],
   });
 
+  const initData = () => {
+    setState({
+      ...data,
+      isPlay: isPlaying,
+    });
+  };
   const data = useSelector((states) => {
     return states.playReducer;
   });
@@ -44,6 +52,14 @@ const PlayMusic = () => {
   const [currentTrackDuration, setCurrentTrackDuration] = React.useState(0);
   const [currentTrackMoment, setCurrentTrackMoment] = React.useState(0);
   const [timeDrag, setTimeDrag] = React.useState(false);
+
+  const [volume, setVolume] = React.useState(0.5); // Default volume level
+  const [slash, setSlash] = React.useState(false);
+
+  const handleVolumeChange = (event) => {
+    const newVolume = parseFloat(event.target.value);
+    setVolume(newVolume);
+  };
 
   const updatebar = (x) => {
     var progress = document.getElementById("jp-progress");
@@ -78,6 +94,39 @@ const PlayMusic = () => {
   //     }
   //   };
 
+  // const handleNextSong = () => {
+  //   let index = indexPlay;
+  //   index++;
+  //   if (audio.play) {
+  //     audio.pause();
+  //   }
+  //   let arr = state.playList;
+  //   if (indexPlay > arr.length) {
+  //     index = arr.length;
+  //   }
+
+  //   setIndexPlay(index);
+  // };
+  // const handlePrevSong = () => {
+  //   let index = indexPlay;
+  //   if (indexPlay != 0) {
+  //     if (audio.play) {
+  //       audio.pause();
+  //     }
+  //     index--;
+  //     setIndexPlay(index);
+  //   }
+  // };
+  //  const handleRandom = () => {
+  //    let length = state.playList.length;
+  //    let randomValue = Math.round(Math.random() * length);
+  //    if (audio.play && indexPlay != randomValue) {
+  //      audio.pause();
+  //      setIndexPlay(randomValue);
+  //    }
+  //    return;
+  //  };
+
   React.useEffect(() => {
     initAudioPlayer();
   });
@@ -96,12 +145,21 @@ const PlayMusic = () => {
     return () => {
       clearTimeout(indetiPIEr);
     };
-  }, []);
+  }, [isPlaying]);
+  React.useEffect(() => {
+    initData();
+    if (isPlaying) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
+    audio.volume = volume;
+  }, [isPlaying, volume]);
 
   return (
-    <div className="absolute bottom-0 w-full ">
+    <div className="absolute bottom-0 w-full h-[15%] ">
       <audio
-        src="https://soundcloud-result.s3.amazonaws.com/2023-08-14/1692000989082.mp3"
+        src={activeSong.audio}
         controls={false}
         id="jp_audio_0"
         onTimeUpdate={(e) => {
@@ -110,8 +168,8 @@ const PlayMusic = () => {
         onLoadedMetadata={handleMetadata}
       />
 
-      <div className=" flex flex-row gap-[30px] items-center justify-center p-[18px] h-full ">
-        <div className=" ml-4 bg-color_bar rounded-[45px] w-[80%] flex flex-row items-center justify-between gap-5 p-1 px-5 ">
+      <div className=" flex flex-row gap-[30px] items-center justify-center p-[18px] ">
+        <div className=" lg:h-[10%] md:h-[60%] ml-4 bg-color_bar rounded-[45px] w-[80%] flex flex-row items-center justify-between gap-5 p-1 px-5 ">
           <div className="flex flex-row items-center gap-4 mx-4">
             <Button className="text-white text-lg flex font-abhaya-libre font-extrabold  tracking-[0.18px] ">
               <Img
@@ -132,9 +190,11 @@ const PlayMusic = () => {
               onClick={() => {
                 if (state.isPlay) {
                   audio.pause();
+                  dispatch(playPause(false));
                   setState({ ...state, isPlay: false });
                 } else {
                   audio.play();
+                  dispatch(playPause(true));
                   setState({ ...state, isPlay: true });
                 }
               }}
@@ -168,21 +228,21 @@ const PlayMusic = () => {
               ></Img>
             </Button>
           </div>
-          <div className="flex flex-row gap-4 w-[40%]">
+          <div className="flex flex-row gap-4 w-[40%] h-[50%]">
             <div className="relative ml-4 w-[80%] h-[100%] flex flex-col items-center ">
-              <div className="absolute opacity-[14%] h-full w-full bg-[#000000] top-0 rounded-[11.85px] "></div>
-              <div className=" flex flex-row items-start justify-start gap-x-3 ">
+              <div className="absolute opacity-[14%] h-full  w-full md:h-[10%]  bg-[#000000] top-0 rounded-[11.85px] "></div>
+              <div className="flex flex-row items-start justify-start gap-x-3 h-[80px] md:h-[30%] truncate w-[100%]  ">
                 <Img
-                  className="m-0 w-[20%] rounded-[11.85px]"
-                  src="./images/1.png"
+                  className="w-[20%] rounded-[11.85px]"
+                  src={activeSong.trackMetadata?.displayImageUri}
                   alt="user One"
                 />
-                <div className="flex flex-col items-start justify-start w-full">
-                  <Text className="text-white_text font-abhaya-libre font-extrabold text-3xl tracking-[0.18px] ">
-                    Song 1223
+                <div className="flex flex-col items-start justify-start w-full truncate">
+                  <Text className="text-white_text font-abhaya-libre font-extrabold text-2xl tracking-[0.18px] truncate  md:text-xs ">
+                    {activeSong.trackMetadata?.trackName}
                   </Text>
-                  <Text className="text-[#FFFFFF] text-sm tracking-[0.14px] opacity-[64%]">
-                    Song
+                  <Text className="  text-[#FFFFFF] text-sm tracking-[0.14px] opacity-[64%] ">
+                    {activeSong.trackMetadata?.artists[0].name}
                   </Text>
 
                   <div className="mt-2 flex flex-row justify-between items-start w-full mb-1">
@@ -225,13 +285,44 @@ const PlayMusic = () => {
                 alt="user One"
               ></Img>
             </Button>
-            <Button className="text-white text-lg flex font-abhaya-libre font-extrabold  tracking-[0.18px] ">
-              <Img
-                className="h-7 w-7 rounded-lg items-center"
-                src="./images/icon_speaker.svg"
-                alt="user One"
-              ></Img>
-            </Button>
+            {!slash ? (
+              <Button
+                className="text-white text-lg flex font-abhaya-libre font-extrabold  tracking-[0.18px] "
+                onClick={() => {
+                  setSlash(true);
+                  audio.volume = 0;
+                }}
+              >
+                <Img
+                  className="h-7 w-7 rounded-lg items-center"
+                  src="./images/icon_speaker.svg"
+                  alt="user One"
+                />
+              </Button>
+            ) : (
+              <Button
+                className="text-white text-lg flex font-abhaya-libre font-extrabold  tracking-[0.18px] "
+                onClick={() => {
+                  setSlash(false);
+                  audio.volume = volume;
+                }}
+              >
+                <Img
+                  className="h-7 w-7 rounded-lg items-center"
+                  src="./images/speakerslash.svg"
+                  alt="user One"
+                />
+              </Button>
+            )}
+            <input
+              className=" rounded-lg overflow-hidden appearance-none bg-gray-400 h-3 w-[30%]"
+              type="range"
+              min={0}
+              max={1}
+              step={0.01}
+              value={volume}
+              onChange={handleVolumeChange}
+            />
           </div>
         </div>
       </div>
