@@ -159,7 +159,7 @@ const PlayMusic = () => {
   return (
     <div className="absolute bottom-0 w-full h-[15%] ">
       <audio
-        src={activeSong.audio}
+        src={activeSong?.audio}
         controls={false}
         id="jp_audio_0"
         onTimeUpdate={(e) => {
@@ -234,15 +234,15 @@ const PlayMusic = () => {
               <div className="flex flex-row items-start justify-start gap-x-3 h-[80px] md:h-[30%] truncate w-[100%]  ">
                 <Img
                   className="w-[20%] rounded-[11.85px]"
-                  src={activeSong.trackMetadata?.displayImageUri}
+                  src={activeSong?.trackMetadata?.displayImageUri}
                   alt="user One"
                 />
                 <div className="flex flex-col items-start justify-start w-full truncate">
                   <Text className="text-white_text font-abhaya-libre font-extrabold text-2xl tracking-[0.18px] truncate  md:text-xs ">
-                    {activeSong.trackMetadata?.trackName}
+                    {activeSong?.trackMetadata?.trackName}
                   </Text>
                   <Text className="  text-[#FFFFFF] text-sm tracking-[0.14px] opacity-[64%] ">
-                    {activeSong.trackMetadata?.artists[0].name}
+                    {activeSong?.trackMetadata?.artists[0].name}
                   </Text>
 
                   <div className="mt-2 flex flex-row justify-between items-start w-full mb-1">

@@ -1,52 +1,52 @@
-import React, { useState, useEffect } from 'react';
-import { FaPlay, FaPause } from 'react-icons/fa';
-// import avatarplaylist from '../assets/images/playlist1.jpg';
-import getImage from '../utils/getImage';
+import React, { useState, useEffect } from "react";
+import { FaPlay, FaPause } from "react-icons/fa";
+import { useSelector } from "react-redux";
+import Text from "./Text";
+import { useDispatch } from "react-redux";
+import { setActiveSong, playPause } from "../Redux/features/playerSlice";
 
-const ImageGenerator = ({ imageName, className }) => {
-  return (
-    <img src={imageName} alt="Generated" className={className} />
-  );
-};
-
-const PlaylistHeader = ({ avatar, name }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [imageData, setImageData] = useState('');
-
+const PlaylistHeader = ({ image, name }) => {
+  // const [isPlaying, setIsPlaying] = useState(false);
+  // const [imageData, setImageData] = useState("");
+  const dispatch = useDispatch();
   const handlePlayButtonClick = () => {
-    setIsPlaying(!isPlaying);
+    dispatch(playPause(!isPlaying));
   };
 
-  useEffect(() => {
-    const fetchImageData = async () => {
-      try {
-        const imageData = await getImage(avatar); // Gọi hàm getImage để lấy dữ liệu hình ảnh từ máy chủ
-        setImageData(imageData);
-      } catch (error) {
-        console.error('Err: ', error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchImageData = async () => {
+  //     try {
+  //       const imageData = await getImage(avatar); // Gọi hàm getImage để lấy dữ liệu hình ảnh từ máy chủ
+  //       setImageData(imageData);
+  //     } catch (error) {
+  //       console.error("Err: ", error);
+  //     }
+  //   };
 
-    fetchImageData();
-  }, [avatar]);
+  //   fetchImageData();
+  // }, [avatar]);
+
+  const { activeSong, isPlaying } = useSelector((state) => state.player);
   return (
-    <div className="playlist-header">
-      <div className="playlist-avatar">
-        <ImageGenerator imageName={`data:image/jpeg;base64,${imageData}`} className="custom-image" />
-        {/* <img src={avatarplaylist} alt="Playlist Avatar" /> */}
-      </div>
-      <div className="playlist-info">
-        <h2 style={{ fontSize: '96px' }}>{name}</h2>
-        <button className="play-button" onClick={handlePlayButtonClick}>
-          {isPlaying ? <FaPause className="play-icon" /> : <FaPlay className="play-icon" />}
-          {isPlaying ? 'Pause' : 'Play'}
+    <div className="h-[30%] w-full flex flex-row gap-6 justify-start items-start">
+      <img src={image} className="rounded-[6px] h-full" />
+
+      <div className="flex flex-col justify-between h-full">
+        <Text className="text-3xl font-abhaya-libre text-white">{name}</Text>
+        <button
+          className="flex flex-row bg-[#FF293F] text-white rounded-xl w-fit items-center px-4 py-1"
+          onClick={handlePlayButtonClick}
+        >
+          {isPlaying ? (
+            <FaPause className="play-icon" />
+          ) : (
+            <FaPlay className="play-icon" />
+          )}
+          {isPlaying ? "Pause" : "Play"}
         </button>
       </div>
     </div>
   );
 };
 
-export {
-  PlaylistHeader,
-  ImageGenerator
-};
+export default PlaylistHeader;

@@ -1,9 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export const spotifydownloadmusic = createApi({
-  reducerPath: "spotifydownloadmusic",
+export const getMp3Music = createApi({
+  reducerPath: "getMp3Music",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://spotify-downloader3.p.rapidapi.com/spotify/download",
+    baseUrl: "https://youtube-mp36.p.rapidapi.com/dl",
     prepareHeaders: (headers) => {
       headers.set(
         "X-RapidAPI-Key",
@@ -14,10 +14,10 @@ export const spotifydownloadmusic = createApi({
     },
   }),
   endpoints: (builder) => ({
-    GetDownLoadMusic: builder.query({
-      query: (url) => `/?url=${encodeURIComponent(url)}`,
+    GetDownLoadMusicTempMp3: builder.query({
+      query: (url) => `?id=${url}`,
     }),
   }),
 });
 
-export const { useGetDownLoadMusicQuery } = spotifydownloadmusic;
+export const { useGetDownLoadMusicTempMp3Query } = getMp3Music;

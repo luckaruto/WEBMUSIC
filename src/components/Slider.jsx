@@ -61,7 +61,7 @@ export default function Slider() {
                 <div className="flex flex-col font-outfit gap-2 items-center justify-start w-full">
                   <div
                     className="ml-5 common-pointer flex flex-col font-abhaya-libre font-extrabold items-start justify-start w-full"
-                    onClick={() => navigate("/message")}
+                    onClick={() => navigate("/")}
                   >
                     <div className="bg-color_choice_dark rounded-[20px] w-4/5  flex flex-row items-center justify-start p-1.5 gap-[18px] md:ml-[0] md:w-full">
                       <Img
@@ -193,7 +193,7 @@ export default function Slider() {
                   </div>
                   <div
                     className="ml-5 common-pointer flex flex-col font-abhaya-libre font-extrabold items-start justify-start w-full"
-                    onClick={() => navigate("/myprofilecollection")}
+                    onClick={() => navigate("/playlist")}
                   >
                     <div className="w-4/5 flex flex-row items-center justify-start p-1.5 gap-[18px] md:ml-[0] md:w-full">
                       <Img
@@ -211,7 +211,7 @@ export default function Slider() {
                   </div>
                   <div
                     className="ml-5 common-pointer flex flex-col font-abhaya-libre font-extrabold items-start justify-start w-full"
-                    onClick={() => navigate("/myprofilecollection")}
+                    onClick={() => navigate("/playlist")}
                   >
                     <div className="w-4/5 flex flex-row items-center justify-start p-1.5 gap-[18px] md:ml-[0] md:w-full">
                       <Img

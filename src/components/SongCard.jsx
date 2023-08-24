@@ -4,12 +4,15 @@ import { useDispatch } from "react-redux";
 
 import PlayPause from "./PlayPause";
 import { playPause, setActiveSong } from "../Redux/features/playerSlice";
-import { useGetDownLoadMusicQuery } from "../Redux/services/downloadedsportify";
+// import { useGetDownLoadMusicQuery } from "../Redux/services/downloadedsportify";
 import Loader from "./Loader";
 import Error from "./Error";
 
+import { useGetDownLoadMusicTempQuery } from "../Redux/services/downloadedsportifytemp";
+
 const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
   const dispatch = useDispatch();
+
   function convertToTrackURL(trackURI) {
     const parts = trackURI.split(":");
     const trackID = parts[2];
@@ -20,15 +23,19 @@ const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
   const trackURL = convertToTrackURL(song.trackMetadata?.trackUri);
 
   const [dataMusic, setDataMusic] = useState(song);
-  const srcaudio = useGetDownLoadMusicQuery(trackURL);
+  const srcaudio = useGetDownLoadMusicTempQuery(trackURL);
   const [bending, setBending] = useState(false);
 
-  const convertToDownload = async () => {
+  const ConvertToDownload = () => {
     setBending(false);
+
     const modifiedData = {
       ...song,
-      audio: srcaudio?.data?.audio,
+      audio: srcaudio?.data?.PreviewUrl,
+      // audio:
+      //   "https://mbeta.123tokyo.xyz/get.php/6/0e/1PkSePIyfHk.mp3?cid=MmEwMTo0Zjg6YzAxMDo5ZmE2OjoxfE5BfERF&h=FIS-kok922MEkQUyKkDG3A&s=1692805552&n=Seven%20%28feat.%20Latto%29%20-%20Explicit%20Ver.",
     };
+
     setDataMusic(modifiedData);
 
     setBending(true);
@@ -37,8 +44,8 @@ const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
   // const fetchData = useCallback(async () => {}, []);
 
   React.useEffect(() => {
-    const indetiPIEr = setTimeout(async () => {
-      convertToDownload();
+    const indetiPIEr = setTimeout(() => {
+      ConvertToDownload();
     }, 500);
     return () => {
       clearTimeout(indetiPIEr);
