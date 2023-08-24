@@ -5,9 +5,13 @@ import HomePage from "./Pages/Homepage.jsx";
 
 import PlayMusic from "./components/PlayMusic.jsx";
 import Optional from "./components/Optional.jsx";
+
+import PlayingMusicPage from "./Pages/PlayingMusicPage.jsx";
+
 import Slider from "./components/Slider.jsx";
 import PlaylistPage from "./Pages/PlaylistPage.jsx";
 import Layout from "./components/Layout.jsx";
+
 
 function App() {
   const Layout = () => {
@@ -38,7 +42,11 @@ function App() {
       element: <Layout />,
       children: [
         { path: "/", element: <HomePage /> },
+
+        // { path: "/", element: <PlayingMusicPage />}
+
         { path: "/playlist", element: <PlaylistPage /> },
+
 
         // {
         //   path: "/courses",
