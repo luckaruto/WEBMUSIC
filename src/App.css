@@ -98,3 +98,24 @@
   scrollbar-width: none;
   /* Firefox */
 }
+
+.backdropTeacher {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  
+}
+
+.modalTeacher {
+  position: fixed;
+  top: 10%;
+  bottom:10%;
+  left: 20%;
+  right:20%;
+  width: 60%;
+  z-index: 100;
+  overflow: hidden;
+}

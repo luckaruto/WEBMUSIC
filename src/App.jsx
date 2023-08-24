@@ -10,7 +10,7 @@ import PlayingMusicPage from "./Pages/PlayingMusicPage.jsx";
 
 import Slider from "./components/Slider.jsx";
 import PlaylistPage from "./Pages/PlaylistPage.jsx";
-import Layout from "./components/Layout.jsx";
+import TopChartsComponent from "./Pages/TextPage.jsx";
 
 
 function App() {
@@ -54,6 +54,10 @@ function App() {
         // },
         // { path: "/test", element: <test /> },
       ],
+    },
+    {
+      path: "/test",
+      element: <TopChartsComponent />,
     },
     // {
     //   path: "/login",

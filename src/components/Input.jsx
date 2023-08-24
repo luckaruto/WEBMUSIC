@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { ErrorMessage } from "../../components/ErrorMessage";
+import { ErrorMessage } from "./ErrorMessage";
 
 const Input = React.forwardRef(
   (
@@ -62,4 +62,4 @@ Input.defaultProps = {
   type: "text",
 };
 
-export { Input };
+export default Input;

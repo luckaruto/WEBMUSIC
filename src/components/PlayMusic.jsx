@@ -2,7 +2,12 @@ import React from "react";
 import Img from "./Img";
 import Button from "./Button";
 import Text from "./Text";
-import { playPause, setActiveSong } from "../Redux/features/playerSlice";
+import {
+  playPause,
+  setActiveSong,
+  nextSong,
+  prevSong,
+} from "../Redux/features/playerSlice";
 
 import { useSelector, useDispatch } from "react-redux";
 
@@ -21,7 +26,8 @@ const formatTime = (time) => {
 
 const PlayMusic = () => {
   const dispatch = useDispatch();
-  const { activeSong, isPlaying } = useSelector((state) => state.player);
+  const { activeSong, isPlaying, currentIndex, currentSongs, isActive } =
+    useSelector((state) => state.player);
   const [state, setState] = React.useState({
     isRandom: false,
     isRepeat: false,
@@ -94,38 +100,53 @@ const PlayMusic = () => {
   //     }
   //   };
 
-  // const handleNextSong = () => {
-  //   let index = indexPlay;
-  //   index++;
-  //   if (audio.play) {
-  //     audio.pause();
-  //   }
-  //   let arr = state.playList;
-  //   if (indexPlay > arr.length) {
-  //     index = arr.length;
-  //   }
+  const handleNextSong = () => {
+    let index = currentIndex;
+    index++;
+    if (isPlaying) {
+      audio.pause();
+      setTimeout(() => {
+        audio.play();
+      }, 100);
+    }
+    let arr = currentSongs;
+    if (index == arr.length) {
+      index = arr.length - 1;
+    }
 
-  //   setIndexPlay(index);
-  // };
-  // const handlePrevSong = () => {
-  //   let index = indexPlay;
-  //   if (indexPlay != 0) {
-  //     if (audio.play) {
-  //       audio.pause();
-  //     }
-  //     index--;
-  //     setIndexPlay(index);
-  //   }
-  // };
-  //  const handleRandom = () => {
-  //    let length = state.playList.length;
-  //    let randomValue = Math.round(Math.random() * length);
-  //    if (audio.play && indexPlay != randomValue) {
-  //      audio.pause();
-  //      setIndexPlay(randomValue);
-  //    }
-  //    return;
-  //  };
+    dispatch(nextSong(index));
+  };
+  const handlePrevSong = () => {
+    let index = currentIndex;
+    index--;
+    if (isPlaying) {
+      audio.pause();
+      setTimeout(() => {
+        audio.play();
+      }, 100);
+    }
+    let arr = currentSongs;
+    if (index == 0) {
+      index = 0;
+    }
+
+    dispatch(nextSong(index));
+  };
+  const handleRandom = () => {
+    let length = currentSongs.length;
+    let randomValue = Math.floor(Math.random() * length);
+    while (currentIndex == randomValue) {
+      randomValue = Math.floor(Math.random() * length);
+    }
+    if (isPlaying && currentIndex != randomValue) {
+      audio.pause();
+      setTimeout(() => {
+        audio.play();
+      }, 100);
+      dispatch(nextSong(randomValue));
+    }
+    return;
+  };
 
   React.useEffect(() => {
     initAudioPlayer();
@@ -138,14 +159,6 @@ const PlayMusic = () => {
     );
   };
 
-  React.useEffect(() => {
-    const indetiPIEr = setTimeout(async () => {
-      setsong(0);
-    }, 100);
-    return () => {
-      clearTimeout(indetiPIEr);
-    };
-  }, [isPlaying]);
   React.useEffect(() => {
     initData();
     if (isPlaying) {
@@ -165,20 +178,27 @@ const PlayMusic = () => {
         onTimeUpdate={(e) => {
           handleTimeupdate(e);
         }}
+        onEnded={handleNextSong}
         onLoadedMetadata={handleMetadata}
       />
 
       <div className=" flex flex-row gap-[30px] items-center justify-center p-[18px] ">
         <div className=" lg:h-[10%] md:h-[60%] ml-4 bg-color_bar rounded-[45px] w-[80%] flex flex-row items-center justify-between gap-5 p-1 px-5 ">
           <div className="flex flex-row items-center gap-4 mx-4">
-            <Button className="text-white text-lg flex font-abhaya-libre font-extrabold  tracking-[0.18px] ">
+            <Button
+              className="text-white text-lg flex font-abhaya-libre font-extrabold  tracking-[0.18px] "
+              onClick={handleRandom}
+            >
               <Img
                 className="h-7 w-7 rounded-lg items-center"
                 src="./images/icon_random.svg"
                 alt="user One"
               ></Img>
             </Button>
-            <Button className="text-white text-lg flex font-abhaya-libre font-extrabold  tracking-[0.18px] ">
+            <Button
+              className="text-white text-lg flex font-abhaya-libre font-extrabold  tracking-[0.18px] "
+              onClick={handlePrevSong}
+            >
               <Img
                 className="h-7 w-7 rounded-lg items-center"
                 src="./images/icon_back.svg"
@@ -213,7 +233,10 @@ const PlayMusic = () => {
                 />
               )}
             </Button>
-            <Button className="text-white text-lg flex font-abhaya-libre font-extrabold  tracking-[0.18px] ">
+            <Button
+              className="text-white text-lg flex font-abhaya-libre font-extrabold  tracking-[0.18px] "
+              onClick={handleNextSong}
+            >
               <Img
                 className="h-7 w-7 rounded-lg items-center"
                 src="./images/icon_next.svg"

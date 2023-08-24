@@ -5,18 +5,16 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Error, Loader } from "../components";
-import { useGetTopChartsQuery } from "../Redux/services/spotify";
+import usePlayNow from "../Redux/services/PlayNowData";
+
 import "../styles/playlist.css";
 
 // Component Playlist
 const Playlist = ({ playlistId }) => {
   const { activeSong, isPlaying } = useSelector((state) => state.player);
-  const { data, isFetching, error } = useGetTopChartsQuery();
-  // const selectedPlaylist = playlistData.find(
-  //   (playlist) => playlist.id === playlistId
-  // );
+  const { dataMusic: data, isFetching, error } = usePlayNow();
 
-  if (isFetching) return <Loader title="Loading songs..." />;
+  if (isFetching || data == null) return <Loader title="Loading songs..." />;
 
   if (error) return <Error />;
 

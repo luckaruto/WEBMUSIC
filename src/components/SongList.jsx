@@ -56,7 +56,7 @@ const SongList = ({ data }) => {
       </div>
       <div className="song-list-items-container overflow-auto h-[80%] mt-3 w-full">
         <ul className="song-list-items flex flex-col justify-center gap-6">
-          {data?.slice(0, 5).map((song, index) => (
+          {data?.slice(0, 10).map((song, index) => (
             <SongElement song={song} index={index} data={data} />
           ))}
         </ul>

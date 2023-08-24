@@ -4,13 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { Error, Loader, SongCard } from "../components";
 import { useGetTopChartsQuery } from "../Redux/services/spotify";
 import { useGetDownLoadMusicQuery } from "../Redux/services/downloadedsportify";
+import usePlayNow from "../Redux/services/PlayNowData";
 
 const PlayNow = () => {
   const dispatch = useDispatch();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
-  const { data, isFetching, error } = useGetTopChartsQuery();
+  // const { data, isFetching, error } = useGetTopChartsQuery();
+  const { dataMusic: data, isFetching, error } = usePlayNow();
 
-  if (isFetching) return <Loader title="Loading songs..." />;
+  if (isFetching || data == null) return <Loader title="Loading songs..." />;
 
   if (error) return <Error />;
 
