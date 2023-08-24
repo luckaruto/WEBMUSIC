@@ -7,6 +7,7 @@ import Slider from "./components/Slider.jsx";
 import PlayMusic from "./components/PlayMusic.jsx";
 import Optional from "./components/Optional.jsx";
 import { Sidebar } from "react-pro-sidebar";
+import PlayingMusicPage from "./Pages/PlayingMusicPage.jsx";
 
 function App() {
   const Layout = () => {
@@ -27,7 +28,7 @@ function App() {
       // element: <Layout />,
       children: [
         { path: "/", element: <HomePage /> },
-
+        // { path: "/", element: <PlayingMusicPage />}
         // {
         //   path: "/courses",
         //   element: <Courses />,
