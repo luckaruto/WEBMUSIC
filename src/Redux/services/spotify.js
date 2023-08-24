@@ -4,10 +4,11 @@ export const spotify = createApi({
   reducerPath: "spotify",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://spotify81.p.rapidapi.com",
+
     prepareHeaders: (headers) => {
       headers.set(
         "X-RapidAPI-Key",
-        "1149133f22mshd9a7715f5f7667ap16812ajsn18d89a6cef70"
+        "2d15467778mshefa5da6b8c65800p1e1da7jsnbdaf6eae3dd3"
       );
 
       return headers;
@@ -15,7 +16,7 @@ export const spotify = createApi({
   }),
   endpoints: (builder) => ({
     getTopCharts: builder.query({
-      query: () => "/top_200_tracks?date=2023-07-20",
+      query: () => "/top_200_tracks?country=VN&period=daily&date=2023-08-15",
     }),
   }),
 });

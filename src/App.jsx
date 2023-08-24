@@ -3,19 +3,30 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import React from "react";
 import HomePage from "./Pages/Homepage.jsx";
 
-import Slider from "./components/Slider.jsx";
 import PlayMusic from "./components/PlayMusic.jsx";
 import Optional from "./components/Optional.jsx";
-import { Sidebar } from "react-pro-sidebar";
+import Slider from "./components/Slider.jsx";
+import PlaylistPage from "./Pages/PlaylistPage.jsx";
+import Layout from "./components/Layout.jsx";
 
 function App() {
   const Layout = () => {
     return (
       <>
-        {/* <Outlet />
-        <Sidebar />
-        <Optional />
-        <PlayMusic /> */}
+        <div className="bg-black flex flex-row font-outfit items-start mx-auto w-full h-full">
+          <Slider />
+          <div className="relative h-screen w-full  ">
+            <div className="absolute opacity-[14%] h-screen w-full bg-color_white_page "></div>
+            <div className="absolute opacity-[14%] h-screen w-full bg-color_white_page "></div>
+            <div className="absolute h-[90%] w-full top-[10%] ">
+              <div className="relative top-[%] flex flex-row items-center justify-center h-[90%] w-full ">
+                <Outlet />
+              </div>
+            </div>
+            <Optional></Optional>
+            <PlayMusic></PlayMusic>
+          </div>
+        </div>
       </>
     );
   };
@@ -24,9 +35,10 @@ function App() {
   const route = createBrowserRouter([
     {
       path: "/",
-      // element: <Layout />,
+      element: <Layout />,
       children: [
         { path: "/", element: <HomePage /> },
+        { path: "/playlist", element: <PlaylistPage /> },
 
         // {
         //   path: "/courses",
