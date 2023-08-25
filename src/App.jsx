@@ -11,6 +11,8 @@ import PlayingMusicPage from "./Pages/PlayingMusicPage.jsx";
 import Slider from "./components/Slider.jsx";
 import PlaylistPage from "./Pages/PlaylistPage.jsx";
 import TopChartsComponent from "./Pages/TextPage.jsx";
+import UniquePlayMusic from "./Pages/UniquePlayMusic.jsx";
+import MusicPlayer from "./Pages/TestThu.jsx";
 
 function App() {
   const Layout = () => {
@@ -53,9 +55,9 @@ function App() {
     },
     {
       path: "/test",
-      element: <TopChartsComponent />,
+      element: <UniquePlayMusic />,
     },
-    { path: "/dcm", element: <PlayingMusicPage /> },
+    { path: "/dcm", element: <MusicPlayer /> },
     // {
     //   path: "/login",
     //   element: <Login />,

@@ -10,6 +10,7 @@ import {
 } from "../Redux/features/playerSlice";
 
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 let audio = null;
 
@@ -25,6 +26,7 @@ const formatTime = (time) => {
 };
 
 const PlayMusic = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { activeSong, isPlaying, currentIndex, currentSongs, isActive } =
     useSelector((state) => state.player);
@@ -251,7 +253,10 @@ const PlayMusic = () => {
               ></Img>
             </Button>
           </div>
-          <div className="flex flex-row gap-4 w-[40%] h-[50%]">
+          <div
+            className="flex flex-row gap-4 w-[40%] h-[50%]"
+            onClick={() => navigate("/test")}
+          >
             <div className="relative ml-4 w-[80%] h-[100%] flex flex-col items-center ">
               <div className="absolute opacity-[14%] h-full  w-full md:h-[10%]  bg-[#000000] top-0 rounded-[11.85px] "></div>
               <div className="flex flex-row items-start justify-start gap-x-3 h-[80px] md:h-[30%] truncate w-[100%]  ">

@@ -12,7 +12,7 @@ function usePlayNow() {
         method: "GET",
         headers: {
           "X-RapidAPI-Key":
-            "5905beffebmsh939a54e6aaaa26bp1caf11jsnf6b174336718",
+            "2d15467778mshefa5da6b8c65800p1e1da7jsnbdaf6eae3dd3",
           "X-RapidAPI-Host": "youtube-mp36.p.rapidapi.com",
         },
       };
