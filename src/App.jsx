@@ -12,7 +12,6 @@ import Slider from "./components/Slider.jsx";
 import PlaylistPage from "./Pages/PlaylistPage.jsx";
 import TopChartsComponent from "./Pages/TextPage.jsx";
 
-
 function App() {
   const Layout = () => {
     return (
@@ -23,7 +22,7 @@ function App() {
             <div className="absolute opacity-[14%] h-screen w-full bg-color_white_page "></div>
             <div className="absolute opacity-[14%] h-screen w-full bg-color_white_page "></div>
             <div className="absolute h-[90%] w-full top-[10%] ">
-              <div className="relative top-[%] flex flex-row items-center justify-center h-[90%] w-full ">
+              <div className="relative top-[10%] flex flex-row items-center justify-center h-[90%] w-full ">
                 <Outlet />
               </div>
             </div>
@@ -43,10 +42,7 @@ function App() {
       children: [
         { path: "/", element: <HomePage /> },
 
-        // { path: "/", element: <PlayingMusicPage />}
-
         { path: "/playlist", element: <PlaylistPage /> },
-
 
         // {
         //   path: "/courses",
@@ -59,6 +55,7 @@ function App() {
       path: "/test",
       element: <TopChartsComponent />,
     },
+    { path: "/dcm", element: <PlayingMusicPage /> },
     // {
     //   path: "/login",
     //   element: <Login />,

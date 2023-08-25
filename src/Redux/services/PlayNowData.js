@@ -4,18 +4,18 @@ import useTopCharts from "./dataset";
 function usePlayNow() {
   const { dataMusic: data, isFetching, error } = useTopCharts();
 
-  const options = {
-    method: "GET",
-    headers: {
-      "X-RapidAPI-Key": "5905beffebmsh939a54e6aaaa26bp1caf11jsnf6b174336718",
-      "X-RapidAPI-Host": "youtube-mp36.p.rapidapi.com",
-    },
-  };
-
   const [dataMusic, setDataMusic] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
+      const options = {
+        method: "GET",
+        headers: {
+          "X-RapidAPI-Key":
+            "5905beffebmsh939a54e6aaaa26bp1caf11jsnf6b174336718",
+          "X-RapidAPI-Host": "youtube-mp36.p.rapidapi.com",
+        },
+      };
       const array = [];
       if (Object.keys(data).length > 0) {
         for (const song of data?.slice(0, 10)) {
