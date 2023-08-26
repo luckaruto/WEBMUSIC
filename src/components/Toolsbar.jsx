@@ -36,7 +36,7 @@ const Toolsbar = () => {
   };
 
   return (
-    <div className='bg-zinc-800 mx-auto py-10 w-1/2 h-screen opacity-80 rounded-3xl text-white'>
+    <div className='bg-zinc-800 mx-auto py-10 w-[20%] h-screen opacity-80 rounded-3xl text-white'>
       <div className="flex mx-12 bg-zinc-700 text-4xl rounded-full">
           <button
             className={`w-1/2 m-6 ml-8 mr-4 focus:outline-none text-center rounded-full py-4 ${activeTab === 'Play Queue' ? 'text-white bg-zinc-500 font-bold' : 'text-zinc-400 bg-zinc-700'}`}

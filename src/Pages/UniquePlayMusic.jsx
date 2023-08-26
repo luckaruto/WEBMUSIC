@@ -7,6 +7,7 @@ import { Lrc, useRecoverAutoScrollImmediately } from "react-lrc";
 import { lyrics } from "../components/Lyrics";
 import { useSelector, useDispatch } from "react-redux";
 import Index from "./TestThu";
+import Toolsbar from "../components/Toolsbar";
 
 let audio = null;
 
@@ -157,6 +158,7 @@ export default function UniquePlayMusic() {
   };
 
   const [lyric, setLyric] = React.useState(false);
+  const [toolsbar, setToolsbar] = React.useState(false);
 
   React.useEffect(() => {
     initData();
@@ -260,7 +262,11 @@ export default function UniquePlayMusic() {
             </div>
 
             <div className="flex flex-row gap-5 absolute right-2">
-              <Button className=" text-white text-lg flex font-abhaya-libre font-extrabold  tracking-[0.18px] ">
+              <Button className=" text-white text-lg flex font-abhaya-libre font-extrabold  tracking-[0.18px] "
+                onClick={() => {
+                  setToolsbar(!toolsbar);
+                }}
+              >
                 <Img
                   className="h-7 w-7 rounded-lg items-center"
                   src="./images/icon_more.svg"
@@ -321,6 +327,9 @@ export default function UniquePlayMusic() {
           </div>
         )}
       </div>
+      {toolsbar === true && (
+        <Toolsbar></Toolsbar>
+      )}
       <div className="absolute bottom-0 w-full h-[15%] ">
         <audio
           src={activeSong?.audio}
