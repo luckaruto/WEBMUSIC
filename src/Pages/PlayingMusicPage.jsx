@@ -7,8 +7,10 @@ import { BiArrowBack } from "react-icons/bi"; // icons for next and previous tra
 import Button from "../components/Button";
 import Img from "../components/Img";
 
-import { Lrc, useRecoverAutoScrollImmediately } from "react-lrc";
-import { lyrics } from "../components/Lyrics";
+
+import { Lrc, useRecoverAutoScrollImmediately } from 'react-lrc';
+import { lyrics } from '../components/Lyrics';
+import PlayMusicModal from '../components/PlayMusicModal';
 
 function getBackGroundColorGradientFromImage(imageUrl) {
   // TRẢ VỀ MÀU Ở VỊ TRÍ TRÊN CÙNG VÀ DƯỚI CÙNG CỦA ẢNH
@@ -37,8 +39,12 @@ function PlayingMusicPage() {
   const [isPlaying, setIsPlaying] = useState(false); // for handling the play and pause
   const [play, { pause, duration, sound }] = useSound(hello); // for handling the sound
   const [showLyrics, setShowLyrics] = useState(false); // for handling the lyrics
-  // for mute and unmute
+  const [showMenuBar, setShowMenuBar] = useState(false); // for handling the menu bar
+  const [showPlayList, setShowPlayList] = useState(false); // for handling the play list
+  const [showPlayNext, setShowPlayNext] = useState(true); // for handling the play next
+    // for mute and unmute
   const [isMuted, setIsMuted] = useState(false);
+
 
   const playingButton = () => {
     if (isPlaying) {
@@ -125,36 +131,65 @@ function PlayingMusicPage() {
 
   return (
     <>
-      {/* 'linear-gradient(180deg, #73750d, #6e4936,  #37262a)' */}
-      <div
-        style={{
-          background: "linear-gradient(180deg, #73750d, #6e4936,  #37262a)",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          width: "100%",
-          height: "100vh",
+    {/* 'linear-gradient(180deg, #73750d, #6e4936,  #37262a)' */}
+    <div style={{
+      background : 'linear-gradient(180deg, #73750d, #6e4936,  #37262a)',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      width: '100%',
+      height: '100vh',
+    }}>
+    <div className='nav_music_area'>
+      <div className='nav_music_area_left'>
+        {/* back button */}
+        <button className='nav_music_area_left_button'><BiArrowBack style={{
+          width: '30px',
+          height: '30px',
+          marginLeft: '30px',
+          color: 'white',
+        }}/></button>
+      </div>
+      <div className='nav_music_area_right'>
+      <Button
+        onClick={() => {
+          setShowMenuBar(!showMenuBar);
+          console.log(showMenuBar);
         }}
       >
-        <div className="nav_music_area">
-          <div className="nav_music_area_left">
-            {/* back button */}
-            <button className="nav_music_area_left_button">
-              <BiArrowBack
-                style={{
-                  width: "30px",
-                  height: "30px",
-                  marginLeft: "30px",
-                  color: "white",
-                }}
-              />
-            </button>
-          </div>
-          <div className="nav_music_area_right">
-            <Img
-              className="h-8 w-8"
-              src="./images/icon_playlist.svg"
-              alt="user One"
+        <Img
+          className="h-8 w-8"
+          src="./images/icon_playlist.svg"
+          alt="user One"
+          style={{
+              marginRight: '30px',
+          }}
+          />
+        </Button>
+      </div>
+    </div>
+    <div className="component" style={{
+      display: 'flex',
+      justifyContent: 'center',
+    }}>
+        <div className='music_playing_area'>
+          <img
+            className="musicCover"
+            src="https://i1.sndcdn.com/artworks-000422809374-wjekm4-t500x500.jpg"
+            width={400}
+            height={400}
+            style={{
+              borderRadius: '5px',
+              paddingBottom: '20px',
+            }}/>
+          <div className="time"
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+            }}
+          >
+            <div className='time_range'
+
               style={{
                 marginRight: "30px",
               }}
@@ -342,7 +377,28 @@ function PlayingMusicPage() {
             <div className="lyric_playing_area">
               <Demo />
             </div>
-          ) : null}
+
+        ) : (null)}
+        {showMenuBar ? (
+        <div className='menu_bar'
+        style={{
+          background: 'black',
+          width: '400px',
+          height: '720px',
+          borderRadius: '10px',
+          marginLeft: '20px',
+          opacity: '0.65',
+          position: 'absolute',
+          top: '0',
+          right: '0',
+          marginRight: '5px',
+          marginTop: '5px',
+          padding: "20px",
+        }}
+        >
+          <PlayMusicModal />
+        </div>
+        ) : (null)}
         </div>
       </div>
     </>
