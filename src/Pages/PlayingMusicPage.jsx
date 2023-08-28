@@ -9,6 +9,7 @@ import Img from '../components/Img';
 
 import { Lrc, useRecoverAutoScrollImmediately } from 'react-lrc';
 import { lyrics } from '../components/Lyrics';
+import PlayMusicModal from '../components/PlayMusicModal';
 
 function getBackGroundColorGradientFromImage(imageUrl) {
     // TRẢ VỀ MÀU Ở VỊ TRÍ TRÊN CÙNG VÀ DƯỚI CÙNG CỦA ẢNH
@@ -39,8 +40,12 @@ function PlayingMusicPage() {
   const [isPlaying, setIsPlaying] = useState(false); // for handling the play and pause
   const [play, { pause, duration, sound }] = useSound(hello); // for handling the sound
   const [showLyrics, setShowLyrics] = useState(false); // for handling the lyrics
+  const [showMenuBar, setShowMenuBar] = useState(false); // for handling the menu bar
+  const [showPlayList, setShowPlayList] = useState(false); // for handling the play list
+  const [showPlayNext, setShowPlayNext] = useState(true); // for handling the play next
     // for mute and unmute
     const [isMuted, setIsMuted] = useState(false);
+
 
   const playingButton = () => {
     if (isPlaying) {
@@ -146,14 +151,21 @@ function PlayingMusicPage() {
         }}/></button>
       </div>
       <div className='nav_music_area_right'>
-      <Img
-        className="h-8 w-8"
-        src="./images/icon_playlist.svg"
-        alt="user One"
-        style={{
-            marginRight: '30px',
+      <Button
+        onClick={() => {
+          setShowMenuBar(!showMenuBar);
+          console.log(showMenuBar);
         }}
-        />
+      >
+        <Img
+          className="h-8 w-8"
+          src="./images/icon_playlist.svg"
+          alt="user One"
+          style={{
+              marginRight: '30px',
+          }}
+          />
+        </Button>
       </div>
     </div>
     <div className="component" style={{
@@ -310,6 +322,26 @@ function PlayingMusicPage() {
         <div className='lyric_playing_area'>
             <Demo />
             </div>
+        ) : (null)}
+        {showMenuBar ? (
+        <div className='menu_bar'
+        style={{
+          background: 'black',
+          width: '400px',
+          height: '720px',
+          borderRadius: '10px',
+          marginLeft: '20px',
+          opacity: '0.65',
+          position: 'absolute',
+          top: '0',
+          right: '0',
+          marginRight: '5px',
+          marginTop: '5px',
+          padding: "20px",
+        }}
+        >
+          <PlayMusicModal />
+        </div>
         ) : (null)}
         </div>
     </div>
