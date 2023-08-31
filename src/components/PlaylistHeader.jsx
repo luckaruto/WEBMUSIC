@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import Text from "./Text";
 import { useDispatch } from "react-redux";
 import { setActiveSong, playPause } from "../Redux/features/playerSlice";
+import Img from "./Img";
 
 const PlaylistHeader = ({ image, name }) => {
   // const [isPlaying, setIsPlaying] = useState(false);
@@ -28,7 +29,7 @@ const PlaylistHeader = ({ image, name }) => {
 
   const { activeSong, isPlaying } = useSelector((state) => state.player);
   return (
-    <div className="h-[30%] w-full flex flex-row gap-6 justify-start items-start">
+    <div className=" relative h-[30%] w-full flex flex-row gap-6 justify-start items-start">
       <img src={image} className="rounded-[6px] h-full" />
 
       <div className="flex flex-col justify-between h-full">
@@ -44,6 +45,9 @@ const PlaylistHeader = ({ image, name }) => {
           )}
           {isPlaying ? "Pause" : "Play"}
         </button>
+      </div>
+      <div className=" absolute right-0 bottom-0">
+        <Img className="h-9 w-9 " src="./images/icon_setting.svg" alt="icon" />
       </div>
     </div>
   );

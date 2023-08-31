@@ -3,10 +3,9 @@ import Img from "../components/Img";
 import Button from "../components/Button";
 import Text from "../components/Text";
 import { playPause, nextSong } from "../Redux/features/playerSlice";
-import { Lrc, useRecoverAutoScrollImmediately } from "react-lrc";
-import { lyrics } from "../components/Lyrics";
 import { useSelector, useDispatch } from "react-redux";
 import Index from "./TestThu";
+import Toolsbar from "../components/Toolsbar";
 
 let audio = null;
 
@@ -157,6 +156,7 @@ export default function UniquePlayMusic() {
   };
 
   const [lyric, setLyric] = React.useState(false);
+  const [toolsbar, setToolsbar] = React.useState(false);
 
   React.useEffect(() => {
     initData();
@@ -170,7 +170,7 @@ export default function UniquePlayMusic() {
   console.log(activeSong);
 
   return (
-    <div className=" flex w-full h-screen bg-gradient-to-r from-[#000000] to-[#EC1052] items-center justify-center">
+    <div className=" relative flex w-full h-screen bg-gradient-to-r from-[#000000] to-[#EC1052] items-center justify-center">
       <div className="flex flex-row w-[80%] h-[80%] gap-7 justify-center items-center">
         <div className="flex flex-col h-full w-[40%] items-center">
           <Img
@@ -260,7 +260,12 @@ export default function UniquePlayMusic() {
             </div>
 
             <div className="flex flex-row gap-5 absolute right-2">
-              <Button className=" text-white text-lg flex font-abhaya-libre font-extrabold  tracking-[0.18px] ">
+              <Button
+                className=" text-white text-lg flex font-abhaya-libre font-extrabold  tracking-[0.18px] "
+                onClick={() => {
+                  setToolsbar(!toolsbar);
+                }}
+              >
                 <Img
                   className="h-7 w-7 rounded-lg items-center"
                   src="./images/icon_more.svg"
@@ -321,18 +326,19 @@ export default function UniquePlayMusic() {
           </div>
         )}
       </div>
-      <div className="absolute bottom-0 w-full h-[15%] ">
-        <audio
-          src={activeSong?.audio}
-          controls={false}
-          id="jp_audio_0"
-          onTimeUpdate={(e) => {
-            handleTimeupdate(e);
-          }}
-          onEnded={handleNextSong}
-          onLoadedMetadata={handleMetadata}
-        />
-      </div>
+
+      {toolsbar === true && <Toolsbar></Toolsbar>}
+
+      <audio
+        src={activeSong?.audio}
+        controls={false}
+        id="jp_audio_0"
+        onTimeUpdate={(e) => {
+          handleTimeupdate(e);
+        }}
+        onEnded={handleNextSong}
+        onLoadedMetadata={handleMetadata}
+      />
     </div>
   );
 }

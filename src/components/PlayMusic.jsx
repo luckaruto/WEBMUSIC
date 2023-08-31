@@ -184,7 +184,7 @@ const PlayMusic = () => {
         onLoadedMetadata={handleMetadata}
       />
 
-      <div className=" flex flex-row gap-[30px] items-center justify-center p-[18px] ">
+      <div className=" flex flex-row gap-[30px] items-center h-full justify-center p-[18px] ">
         <div className=" lg:h-[10%] md:h-[60%] ml-4 bg-color_bar rounded-[45px] w-[80%] flex flex-row items-center justify-between gap-5 p-1 px-5 ">
           <div className="flex flex-row items-center gap-4 mx-4">
             <Button

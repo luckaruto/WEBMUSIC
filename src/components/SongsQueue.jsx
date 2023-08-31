@@ -1,33 +1,39 @@
-import React from 'react';
+import React from "react";
 
 const SongsQueue = ({ songs }) => {
   const handleSongClick = (song) => {
     // setSelectedSong(song);
     console.log(song);
   };
-  
+
   return (
-    <div className="bg-zinc-800 rounded-3xl text-white">
-      <div className="h-[calc(100vh-25vh)] overflow-auto rounded-xl mt-10 relative"> 
-        <div className="absolute left-5 text-white text-5xl">Queue</div>
-        <ul className="song-list-items mt-16 px-8 overflow-auto">
+    <div className="ml-4 rounded-3xl text-white h-[90%]">
+      <div className="flex flex-col  mt-2 h-full w-full">
+        <div className=" text-white text-3xl w-full">Queue</div>
+        <ul className=" mt-2 flex flex-col h-full w-full ">
           {songs.map((song, index) => (
-            <li key={song.id} onClick={() => handleSongClick(song)} className="justify-between px-8 py-4 items-center gap-2.5 grid grid-cols-2 hover:bg-zinc-700 rounded-3xl cursor-pointer ">
-              <span className="flex items-center gap-2.5">
-                <img src={`${song.ava}`} alt="Avatar" className="w-20 h-20 rounded-xl" />
+            <li
+              key={song.id}
+              onClick={() => handleSongClick(song)}
+              className="flex flex-row items-center  hover:bg-zinc-700 rounded-3xl cursor-pointer h-[12%] px-2 w-[90%] gap-2 justify-between "
+            >
+              <span className="flex items-center gap-2.5 h-full">
+                <img
+                  src={`${song.ava}`}
+                  alt="Avatar"
+                  className=" h-[70%] w-auto rounded-md"
+                />
                 <div className="flex flex-col">
-                  <div className="text-white text-3xl">{song.title}</div>
-                  <div className="text-zinc-400 text-2xl">{song.artist}</div>
+                  <div className="text-white text-[100%]">{song.title}</div>
+                  <div className="text-zinc-400 text-[90%]">{song.artist}</div>
                 </div>
               </span>
-              <span className="flex flex-col items-end">
-                <div className="text-white text-3xl">{song.duration}</div>
-                <div className="text-zinc-400 text-2xl">{song.release}</div>
-              </span>
+
+              <div className="text-white text-full">{song.duration}</div>
             </li>
           ))}
         </ul>
-      </div>  
+      </div>
     </div>
   );
 };

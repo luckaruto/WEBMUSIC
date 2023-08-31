@@ -17,7 +17,7 @@ const PlayNow = () => {
   if (error) return <Error />;
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col overflow-hidden">
       <div className="w-full flex justify-between items-start sm:flex-row flex-col mt-4 mb-10">
         <h2 className="font-bold text-3xl text-white text-left">Play Now</h2>
       </div>
