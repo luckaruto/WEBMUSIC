@@ -13,7 +13,7 @@ import PlaylistPage from "./Pages/PlaylistPage.jsx";
 import TopChartsComponent from "./Pages/TextPage.jsx";
 import UniquePlayMusic from "./Pages/UniquePlayMusic.jsx";
 import MusicPlayer from "./Pages/TestThu.jsx";
-import Search from "./components/Search.jsx";
+import SearchPage from "./Pages/SearchPage.jsx";
 
 function App() {
   const Layout = () => {
@@ -47,7 +47,7 @@ function App() {
 
         { path: "/playlist", element: <PlaylistPage /> },
 
-        { path: "/search", element: <Search /> },
+        { path: "/search", element: <SearchPage /> },
 
         // {
         //   path: "/courses",

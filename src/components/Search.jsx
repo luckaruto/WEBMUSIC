@@ -45,9 +45,7 @@ const Search = (keyword) => {
       </div>
 
       <div className="flex flex-row" style={{gap: '1rem'}}>
-        {toString(keyword) !== '[object Undefined]'  ? (
-             <h2 className="font-bold text-3xl text-white text-left">Result for '{toString(keyword)}'</h2>
-        ) : null}
+        <h2 className="font-bold text-3xl text-white text-left">Result</h2>
         <h2 className="font-bold text-3xl text-white text-left">|</h2>
         <Button onClick={() => setSearchCategory("All")} className="bg-[#2a2a80] text-white"><h2 className="font-bold text-3xl text-white text-left">All</h2></Button>
         <Button onClick={() => setSearchCategory("Artist")} className="bg-[#2a2a80] text-white"><h2 className="font-bold text-3xl text-white text-left">Artists</h2></Button>

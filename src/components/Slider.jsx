@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Text from "./Text";
 import Img from "./Img";
 import { useNavigate } from "react-router-dom";
@@ -6,6 +6,12 @@ import { useNavigate } from "react-router-dom";
 export default function Slider() {
   const navigate = useNavigate();
   const [searchKeyword, setsearchKeyword] = React.useState("");
+
+  useEffect(() => {
+    localStorage.setItem("searchKeyword", searchKeyword);
+    console.log(searchKeyword);
+  }, [searchKeyword]);
+
   return (
     <div className="relative w-1/5 h-screen">
       <div className="absolute opacity-[14%] h-screen w-full bg-back_slide_bar "></div>
