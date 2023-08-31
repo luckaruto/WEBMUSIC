@@ -3,8 +3,6 @@ import Img from "../components/Img";
 import Button from "../components/Button";
 import Text from "../components/Text";
 import { playPause, nextSong } from "../Redux/features/playerSlice";
-import { Lrc, useRecoverAutoScrollImmediately } from "react-lrc";
-import { lyrics } from "../components/Lyrics";
 import { useSelector, useDispatch } from "react-redux";
 import Index from "./TestThu";
 import Toolsbar from "../components/Toolsbar";

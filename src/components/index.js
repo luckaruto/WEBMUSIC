@@ -1,4 +1,3 @@
-import Sidebar from "./Sidebar";
 import SongCard from "./SongCard";
 import SongBar from "./SongBar";
 
@@ -8,4 +7,4 @@ import Song from "./Song";
 import PlayBox from "./PlayBox";
 import ArtistBox from "./ArtistBox";
 
-export { Sidebar, SongCard, SongBar, Loader, Error, ArtistBox, PlayBox, Song };
+export { SongCard, SongBar, Loader, Error, ArtistBox, PlayBox, Song };

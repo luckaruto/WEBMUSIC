@@ -7,7 +7,7 @@ const View = () => {
   const { activeSong } = useSelector((state) => state.player);
 
   return (
-    <div className="flex">
+    <div className="flex h-full overflow-hidden">
       <div className=" flex flex-col ">
         <div className="px-6 h-screen overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col-reverse">
           <div className="flex-1 h-fit pb-40">

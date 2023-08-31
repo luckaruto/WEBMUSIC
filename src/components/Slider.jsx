@@ -8,8 +8,8 @@ export default function Slider() {
   return (
     <div className="relative w-1/5 h-screen">
       <div className="absolute opacity-[14%] h-screen w-full bg-back_slide_bar "></div>
-      <div className="absolute h-screen w-full">
-        <aside className="w-full flex h-screen  border-black border-r-[1.5px] border-solid  justify-start overflow-auto top-[0]">
+      <div className="absolute h-screen w-full ">
+        <aside className="w-full flex h-screen  border-black border-r-[1.5px] border-solid  justify-start top-[0] overflow-x-scroll no-scrollbar">
           <div className="h-full w-full flex flex-col gap-[30px] items-start justify-start p-[18px]">
             <div className="flex flex-row justify-between gap-3.5 ml-4 md:ml-[0] mt-4 w-[100%] md:w-full">
               <div className="flex flex-col gap-1.5 items-start justify-start mt-1">
