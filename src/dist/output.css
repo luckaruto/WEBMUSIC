@@ -953,10 +953,6 @@ video {
   height: calc(100vh - 25vh);
 }
 
-.h-\[calc\(100vh-72px\)\] {
-  height: calc(100vh - 72px);
-}
-
 .h-auto {
   height: auto;
 }
@@ -1063,6 +1059,10 @@ video {
   width: 48%;
 }
 
+.w-\[50\%\] {
+  width: 50%;
+}
+
 .w-\[8\%\] {
   width: 8%;
 }
@@ -1103,10 +1103,6 @@ video {
 
 .w-px {
   width: 1px;
-}
-
-.w-\[50\%\] {
-  width: 50%;
 }
 
 .min-w-\[161px\] {
