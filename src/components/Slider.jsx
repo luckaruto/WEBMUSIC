@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Slider() {
   const navigate = useNavigate();
+  const [searchKeyword, setsearchKeyword] = React.useState("");
   return (
     <div className="relative w-1/5 h-screen">
       <div className="absolute opacity-[14%] h-screen w-full bg-back_slide_bar "></div>
@@ -51,6 +52,8 @@ export default function Slider() {
                     className="pl-7 ml-4 border-2 py-1 border-[#382C2C] rounded-[11.85px] w-4/5 bg-[#000000] text-[#FFFFFF] font-abhaya-libre font-extrabold"
                     placeholder="Search"
                     required
+                    onClick={() => navigate("/search")}
+                    onChange={(e) => {setsearchKeyword(e.target.value)}}
                   ></input>
                 </div>
               </form>
