@@ -24,7 +24,7 @@ const Playlist = ({ playlistId }) => {
         image={data[0].trackMetadata?.displayImageUri}
         name="Dcm ro di"
       />
-      <div className=" w-full h-[70%]">
+      <div className=" w-full h-[70%] overflow-hidden">
         <SongList data={data} />
       </div>
     </div>

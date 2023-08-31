@@ -170,7 +170,7 @@ export default function UniquePlayMusic() {
   console.log(activeSong);
 
   return (
-    <div className=" flex w-full h-screen bg-gradient-to-r from-[#000000] to-[#EC1052] items-center justify-center">
+    <div className=" relative flex w-full h-screen bg-gradient-to-r from-[#000000] to-[#EC1052] items-center justify-center">
       <div className="flex flex-row w-[80%] h-[80%] gap-7 justify-center items-center">
         <div className="flex flex-col h-full w-[40%] items-center">
           <Img
@@ -260,7 +260,8 @@ export default function UniquePlayMusic() {
             </div>
 
             <div className="flex flex-row gap-5 absolute right-2">
-              <Button className=" text-white text-lg flex font-abhaya-libre font-extrabold  tracking-[0.18px] "
+              <Button
+                className=" text-white text-lg flex font-abhaya-libre font-extrabold  tracking-[0.18px] "
                 onClick={() => {
                   setToolsbar(!toolsbar);
                 }}
@@ -325,21 +326,19 @@ export default function UniquePlayMusic() {
           </div>
         )}
       </div>
-      {toolsbar === true && (
-        <Toolsbar></Toolsbar>
-      )}
-      <div className="absolute bottom-0 w-full h-[15%] ">
-        <audio
-          src={activeSong?.audio}
-          controls={false}
-          id="jp_audio_0"
-          onTimeUpdate={(e) => {
-            handleTimeupdate(e);
-          }}
-          onEnded={handleNextSong}
-          onLoadedMetadata={handleMetadata}
-        />
-      </div>
+
+      {toolsbar === true && <Toolsbar></Toolsbar>}
+
+      <audio
+        src={activeSong?.audio}
+        controls={false}
+        id="jp_audio_0"
+        onTimeUpdate={(e) => {
+          handleTimeupdate(e);
+        }}
+        onEnded={handleNextSong}
+        onLoadedMetadata={handleMetadata}
+      />
     </div>
   );
 }
