@@ -7,10 +7,9 @@ export default function Slider() {
   const navigate = useNavigate();
   const [searchKeyword, setsearchKeyword] = React.useState("");
 
-  useEffect(() => {
-    localStorage.setItem("searchKeyword", searchKeyword);
-    console.log(searchKeyword);
-  }, [searchKeyword]);
+  // useEffect(() => {
+  //   localStorage.setItem("searchKeyword", searchKeyword);
+  // }, [searchKeyword]);
 
   return (
     <div className="relative w-1/5 h-screen">
@@ -58,8 +57,7 @@ export default function Slider() {
                     className="pl-7 ml-4 border-2 py-1 border-[#382C2C] rounded-[11.85px] w-4/5 bg-[#000000] text-[#FFFFFF] font-abhaya-libre font-extrabold"
                     placeholder="Search"
                     required
-                    onClick={() => navigate("/search")}
-                    onChange={(e) => {setsearchKeyword(e.target.value)}}
+                    onChange={(e) => {setsearchKeyword(e.target.value); localStorage.setItem("searchKeyword", e.target.value); navigate("/search")}}
                   ></input>
                 </div>
               </form>
