@@ -193,7 +193,7 @@ const PlayMusic = () => {
             >
               <Img
                 className="h-7 w-7 rounded-lg items-center"
-                src="./images/icon_random.svg"
+                src="/images/icon_random.svg"
                 alt="user One"
               ></Img>
             </Button>
@@ -203,7 +203,7 @@ const PlayMusic = () => {
             >
               <Img
                 className="h-7 w-7 rounded-lg items-center"
-                src="./images/icon_back.svg"
+                src="/images/icon_back.svg"
                 alt="user One"
               ></Img>
             </Button>
@@ -224,13 +224,13 @@ const PlayMusic = () => {
               {state.isPlay ? (
                 <Img
                   className="h-7 w-7 rounded-lg items-center"
-                  src="./images/icon_play.svg"
+                  src="/images/icon_play.svg"
                   alt="user One"
                 />
               ) : (
                 <Img
                   className="h-7 w-7 rounded-lg items-center"
-                  src="./images/icon_pause.svg"
+                  src="/images/icon_pause.svg"
                   alt="user One"
                 />
               )}
@@ -241,30 +241,35 @@ const PlayMusic = () => {
             >
               <Img
                 className="h-7 w-7 rounded-lg items-center"
-                src="./images/icon_next.svg"
+                src="/images/icon_next.svg"
                 alt="user One"
               ></Img>
             </Button>
             <Button className="text-white text-lg flex font-abhaya-libre font-extrabold  tracking-[0.18px] ">
               <Img
                 className="h-7 w-7 rounded-lg items-center"
-                src="./images/icon_loop.svg"
+                src="/images/icon_loop.svg"
                 alt="user One"
               ></Img>
             </Button>
           </div>
-          <div
-            className="flex flex-row gap-4 w-[40%] h-[50%]"
-            onClick={() => navigate("/test")}
-          >
-            <div className="relative ml-4 w-[80%] h-[100%] flex flex-col items-center ">
-              <div className="absolute opacity-[14%] h-full  w-full md:h-[10%]  bg-[#000000] top-0 rounded-[11.85px] "></div>
+          <div className="flex flex-row gap-4 w-[40%] h-[50%]">
+            <div className="relative ml-4 w-[80%] h-[100%] flex flex-col items-center bg-[#000000] bg-opacity-[14%] rounded-[11.85px]  ">
               <div className="flex flex-row items-start justify-start gap-x-3 h-[80px] md:h-[30%] truncate w-[100%]  ">
-                <Img
-                  className="w-[20%] rounded-[11.85px]"
-                  src={activeSong?.trackMetadata?.displayImageUri}
-                  alt="user One"
-                />
+                <Button
+                  className="h-[90%] w-[25%] "
+                  onClick={() => {
+                    navigate("/Unique");
+                    console.log("ok1");
+                  }}
+                >
+                  <Img
+                    className=" h-full w-full rounded-[11.85px]"
+                    src={activeSong?.trackMetadata?.displayImageUri}
+                    alt="user One"
+                  />
+                </Button>
+
                 <div className="flex flex-col items-start justify-start w-full truncate">
                   <Text className="text-white_text font-abhaya-libre font-extrabold text-2xl tracking-[0.18px] truncate  md:text-xs ">
                     {activeSong?.trackMetadata?.trackName}
@@ -302,14 +307,14 @@ const PlayMusic = () => {
             <Button className="text-white text-lg flex font-abhaya-libre font-extrabold  tracking-[0.18px] ">
               <Img
                 className="h-7 w-7 rounded-lg items-center"
-                src="./images/icon_lyric.svg"
+                src="/images/icon_lyric.svg"
                 alt="user One"
               ></Img>
             </Button>
             <Button className="text-white text-lg flex font-abhaya-libre font-extrabold  tracking-[0.18px] ">
               <Img
                 className="h-7 w-7 rounded-lg items-center"
-                src="./images/icon_more.svg"
+                src="/images/icon_more.svg"
                 alt="user One"
               ></Img>
             </Button>
@@ -323,7 +328,7 @@ const PlayMusic = () => {
               >
                 <Img
                   className="h-7 w-7 rounded-lg items-center"
-                  src="./images/icon_speaker.svg"
+                  src="/images/icon_speaker.svg"
                   alt="user One"
                 />
               </Button>
@@ -337,7 +342,7 @@ const PlayMusic = () => {
               >
                 <Img
                   className="h-7 w-7 rounded-lg items-center"
-                  src="./images/speakerslash.svg"
+                  src="/images/speakerslash.svg"
                   alt="user One"
                 />
               </Button>

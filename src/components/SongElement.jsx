@@ -8,7 +8,7 @@ import Img from "./Img";
 
 import { useGetDownLoadMusicTempQuery } from "../Redux/services/downloadedsportifytemp";
 
-const SongElement = ({ song, index, data }) => {
+const SongElement = ({ song, index, data, setSongDelete }) => {
   const dispatch = useDispatch();
 
   return (
@@ -37,8 +37,11 @@ const SongElement = ({ song, index, data }) => {
           </div>
         </div>
       </span>
-      <div className="absolute right-2 h-6 w-6">
-        <Img src="./images/minus.svg" />
+      <div
+        className="absolute right-2 h-6 w-6"
+        onClick={() => setSongDelete(song)}
+      >
+        <Img src="/images/minus.svg" />
       </div>
     </li>
   );

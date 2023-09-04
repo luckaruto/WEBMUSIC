@@ -37,7 +37,7 @@ const Optional = () => {
                 <Button className="text-white text-lg flex font-abhaya-libre font-extrabold  tracking-[0.18px] ">
                   <Img
                     className="h-7 w-7 rounded-lg items-center"
-                    src="./images/icon_car.svg"
+                    src="/images/icon_car.svg"
                     alt="user One"
                   ></Img>
                 </Button>

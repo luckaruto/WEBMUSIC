@@ -5,16 +5,18 @@ import { Error, Loader, SongCard } from "../components";
 import { useGetTopChartsQuery } from "../Redux/services/spotify";
 import { useGetDownLoadMusicQuery } from "../Redux/services/downloadedsportify";
 import usePlayNow from "../Redux/services/PlayNowData";
+import chartData from "../Redux/services/DataSong";
 
 const PlayNow = () => {
   const dispatch = useDispatch();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
   // const { data, isFetching, error } = useGetTopChartsQuery();
-  const { dataMusic: data, isFetching, error } = usePlayNow();
+  // const { dataMusic: data, isFetching, error } = usePlayNow();
 
-  if (isFetching || data == null) return <Loader title="Loading songs..." />;
+  // if (isFetching || data == null) return <Loader title="Loading songs..." />;
 
-  if (error) return <Error />;
+  // if (error) return <Error />;
+  // console.log(data);
 
   return (
     <div className="flex flex-col overflow-hidden">
@@ -23,13 +25,13 @@ const PlayNow = () => {
       </div>
 
       <div className="flex flex-wrap sm:justify-start justify-center gap-8">
-        {data?.slice(0, 10).map((song, i) => (
+        {chartData?.map((song, i) => (
           <SongCard
             key={i}
             song={song}
             isPlaying={isPlaying}
             activeSong={activeSong}
-            data={data}
+            data={chartData}
             i={i}
           />
         ))}

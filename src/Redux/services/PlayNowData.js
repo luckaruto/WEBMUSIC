@@ -18,7 +18,7 @@ function usePlayNow() {
       };
       const array = [];
       if (Object.keys(data).length > 0) {
-        for (const song of data?.slice(0, 10)) {
+        for (const song of data?.slice(0, 100)) {
           const url = `https://youtube-mp36.p.rapidapi.com/dl?id=${
             song?.audio?.split("=")[1]
           }`;

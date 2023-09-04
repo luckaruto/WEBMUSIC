@@ -5,14 +5,11 @@ import Text from "./Text";
 import { useDispatch } from "react-redux";
 import { setActiveSong, playPause } from "../Redux/features/playerSlice";
 import Img from "./Img";
-import { setListPlayList } from "../Redux/features/playerSlice";
-import { EditText, EditTextarea } from "react-edit-text";
-import { useParams, useSearchParams } from "react-router-dom";
-import { useRef } from "react";
 
-const PlaylistHeader = (props) => {
-  const params = useParams();
-  const { activeSong, isPlaying, ListPlaylist } = useSelector(
+import { EditText, EditTextarea } from "react-edit-text";
+
+export default function HeaderArtist(props) {
+  const { activeSong, isPlaying, Artist } = useSelector(
     (state) => state.player
   );
 
@@ -40,48 +37,14 @@ const PlaylistHeader = (props) => {
   const [valuetitle, setvaluetitle] = useState("");
 
   React.useEffect(() => {
-    if (parseInt(params.playlistId) < ListPlaylist.length) {
-      setSelectedImage(ListPlaylist[parseInt(params.playlistId)]?.image);
-      setDescription(ListPlaylist[parseInt(params.playlistId)]?.description);
-      setvaluetitle(ListPlaylist[parseInt(params.playlistId)]?.title);
-    }
-    console.log("2");
-  }, [params.playlistId, ListPlaylist]);
+    setSelectedImage(Artist.image);
+    setDescription(Artist.description);
+    setvaluetitle(Artist.title);
+  }, []);
 
   React.useEffect(() => {
-    const timer = setTimeout(() => {
-      if (parseInt(params.playlistId) < ListPlaylist.length) {
-        const temp = {
-          ...ListPlaylist[parseInt(params.playlistId)],
-          id: `Playlist${parseInt(params.playlistId) + 1}`,
-          title: valuetitle,
-          description: description,
-          image: selectedImage,
-        };
-
-        const newListPlaylist = [...ListPlaylist];
-
-        newListPlaylist[parseInt(params.playlistId)] = temp;
-
-        dispatch(setListPlayList(newListPlaylist));
-      } else {
-        const temp = {
-          id: `Playlist${parseInt(params.playlistId) + 1}`,
-          title: `Playlist${parseInt(params.playlistId) + 1}`,
-          description: "",
-          image: "/images/music.svg",
-          music: [],
-        };
-        setSelectedImage("/images/music.svg");
-        setDescription("");
-        setvaluetitle(`Playlist${parseInt(params.playlistId)}`);
-        dispatch(setListPlayList([...ListPlaylist, temp]));
-        console.log("4");
-      }
-      console.log("1");
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, [selectedImage, valuetitle, description, params.playlistId]);
+    props.HandleChangeValue(selectedImage, valuetitle, description);
+  }, [selectedImage, valuetitle, description]);
 
   return (
     <div className=" relative h-[30%] w-full flex flex-row gap-6 justify-start items-start">
@@ -122,6 +85,7 @@ const PlaylistHeader = (props) => {
           className="text-3xl font-abhaya-libre text-white"
           onChange={(e) => {
             setvaluetitle(e.target.value);
+            console.log(e.target.value);
           }}
           value={valuetitle}
           defaultValue={valuetitle == "" ? "PlayList no title" : valuetitle}
@@ -148,16 +112,9 @@ const PlaylistHeader = (props) => {
           {isPlaying ? "Pause" : "Play"}
         </button>
       </div>
-      <div
-        className=" absolute right-0 bottom-0"
-        onClick={() => {
-          props.setPlaylistDelete(ListPlaylist[parseInt(params.playlistId)]);
-        }}
-      >
-        <Img className="h-9 w-9 " src="/images/trash.svg" alt="icon" />
+      <div className=" absolute right-0 bottom-0" onClick={props.HandleTrue}>
+        <Img className="h-9 w-9 " src="/images/addSong.svg" alt="icon" />
       </div>
     </div>
   );
-};
-
-export default PlaylistHeader;
+}
