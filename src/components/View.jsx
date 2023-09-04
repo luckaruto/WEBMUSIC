@@ -1,7 +1,8 @@
-import { useSelector } from "react-redux";
-import { Route, Routes } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
 
-import PlayNow from "../components/PlayNow";
+import PlayNow from '../components/PlayNow';
+import Library from '../components/Library';
 
 const View = () => {
   const { activeSong } = useSelector((state) => state.player);
@@ -12,6 +13,7 @@ const View = () => {
         <div className="px-6 h-screen overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col-reverse">
           <div className="flex-1 h-fit pb-40">
             <PlayNow />
+            <Library />
           </div>
         </div>
       </div>
