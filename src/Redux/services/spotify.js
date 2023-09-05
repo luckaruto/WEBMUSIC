@@ -16,7 +16,7 @@ export const spotify = createApi({
   }),
   endpoints: (builder) => ({
     getTopCharts: builder.query({
-      query: () => "/top_200_tracks?country=VN&period=daily&date=2023-08-15",
+      query: () => "/top_200_tracks?country=GLOBAL&date=2023-09-03",
     }),
   }),
 });

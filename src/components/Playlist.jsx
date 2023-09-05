@@ -11,16 +11,28 @@ import "../styles/playlist.css";
 import { useNavigate } from "react-router-dom";
 import chartData from "../Redux/services/DataSong";
 import ModalDelete from "./ModalDelete";
+import Button from "./Button";
+import DropDown from "./DropDown";
+
 import { useParams, useSearchParams } from "react-router-dom";
 
 // Component Playlist
 const Playlist = ({ playlistId }) => {
   const navigate = useNavigate();
   const params = useParams();
-  const { activeSong, isPlaying, ListPlaylist } = useSelector(
+  const { activeSong, isPlaying, ListPlaylist, darkmode } = useSelector(
     (state) => state.player
   );
   const dispatch = useDispatch();
+  const [isInputVisible, setInputVisible] = React.useState(false);
+  const searchInputRef = React.useRef(null);
+
+  const toggleInput = () => {
+    setInputVisible(!isInputVisible);
+    if (searchInputRef.current) {
+      searchInputRef.current.focus(); // Focus on the input when it becomes visible
+    }
+  };
   const [data, setData] = React.useState([]);
   const [stateDelete, setStateDelete] = React.useState(false);
 
@@ -78,12 +90,24 @@ const Playlist = ({ playlistId }) => {
   const HandleFalsePlaylist = () => {
     setStateDeletePlaylist(false);
   };
+  const SortData = (data) => {
+    setData(data);
+  };
+
+  const [isDarkMode, setIsDarkMode] = React.useState(() => {
+    const savedDarkMode = localStorage.getItem("darkMode");
+    return savedDarkMode ? JSON.parse(savedDarkMode) : false;
+  });
+  React.useEffect(() => {
+    setIsDarkMode(darkmode);
+  }, [darkmode]);
+
   React.useEffect(() => {
     setData(ListPlaylist[parseInt(params.playlistId)]?.music);
-    console.log(ListPlaylist[parseInt(params.playlistId)]);
-  }, [params.playlistId, handleDeletePlaylist]);
+  }, [params.playlistId, ListPlaylist.length]);
+
   return (
-    <div className=" flex flex-col w-[90%] h-full gap-9 ml-6   ">
+    <div className=" flex flex-col w-[90%] h-full gap-9 ml-6 relative mt-5  ">
       <PlaylistHeader
         setPlaylistDelete={setPlaylistDelete}
         handleDeletePlaylist={handleDeletePlaylist}
@@ -107,6 +131,54 @@ const Playlist = ({ playlistId }) => {
           handleDelete={handleDeletePlaylist}
         />
       )}
+      <div className="absolute right-[8%] top-4">
+        <div className="flex flex-row gap-3 items-center">
+          <div className="flex flex-row items-center relative ">
+            <Button
+              onClick={toggleInput}
+              className={`absolute h-6 w-6 ${
+                isInputVisible ? "left-5" : "right-0"
+              }  `}
+            >
+              {isDarkMode ? (
+                <img src="/images/find.svg"></img>
+              ) : (
+                <img src="/images/findwhite.svg"></img>
+              )}
+            </Button>
+            {isInputVisible && (
+              <input
+                onChange={(e) => {
+                  console.log(e.target.value === "");
+                  if (e.target.value == "") {
+                    setData(ListPlaylist[parseInt(params.playlistId)]?.music);
+                  } else {
+                    setData(() =>
+                      ListPlaylist[parseInt(params.playlistId)]?.music.filter(
+                        (song) =>
+                          song.trackMetadata?.trackName.includes(
+                            e.target.value
+                          ) ||
+                          song.trackMetadata?.artists[0].name.includes(
+                            e.target.value
+                          )
+                      )
+                    );
+                  }
+                }}
+                ref={searchInputRef}
+                type="text"
+                id="search-input"
+                placeholder="Filter"
+                required
+                className="pl-7 ml-4 border-2 py-1 border-[#bf6868] text-black placeholder:text-black bg-white font-poppins dark:placeholder:text-white rounded-[11.85px] w-4/5 dark:bg-[#535050] dark:text-[#FFFFFF] "
+              />
+            )}
+          </div>
+
+          <DropDown SortData={SortData} chartData={data}></DropDown>
+        </div>
+      </div>
     </div>
   );
 };

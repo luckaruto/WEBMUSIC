@@ -10,7 +10,7 @@ import chartData from "../Redux/services/DataSong";
 const PlayNow = () => {
   const dispatch = useDispatch();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
-  // const { data, isFetching, error } = useGetTopChartsQuery();
+
   // const { dataMusic: data, isFetching, error } = usePlayNow();
 
   // if (isFetching || data == null) return <Loader title="Loading songs..." />;

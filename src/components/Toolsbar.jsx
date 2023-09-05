@@ -45,7 +45,7 @@ const Toolsbar = () => {
 
   return (
     <div className=" absolute right-0 flex flex-col bg-zinc-800 w-[20%] h-full opacity-80 rounded-l-3xl text-white items-center">
-      <div className=" mt-3 flex flex-row items-center gap-2 bg-zinc-700  rounded-[34.56px] h-[9%] w-[80%] justify-center">
+      <div className="font-poppins font-semibold mt-3 flex flex-row items-center gap-2 bg-zinc-700  rounded-[34.56px] h-[9%] w-[80%] justify-center">
         <button
           className={`w-[40%] h-[70%] px-1 focus:outline-none rounded-[20px] text-[100%]  ${
             activeTab === "Play Queue"

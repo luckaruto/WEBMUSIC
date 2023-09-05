@@ -10,7 +10,7 @@ import PlayingMusicPage from "./Pages/PlayingMusicPage.jsx";
 import AllPlayListPage from "./Pages/AllPlayListPage.jsx";
 
 import Slider from "./components/Slider.jsx";
-import { ReactQueryDevtools } from "react-query/devtools";
+
 import PlaylistPage from "./Pages/PlaylistPage.jsx";
 import TopChartsComponent from "./Pages/TextPage.jsx";
 import UniquePlayMusic from "./Pages/UniquePlayMusic.jsx";
@@ -19,18 +19,17 @@ import SongPage from "./Pages/SongPage.jsx";
 import AddPlaylistPage from "./Pages/AddPlayListPage.jsx";
 import Footer from "./components/Footer.jsx";
 import ArtistPageCreate from "./Pages/ArtistPageCreate.jsx";
-import { QueryClient, QueryClientProvider } from "react-query";
+import PageDriverMode from "./Pages/PageDriverMode.jsx";
 
 function App() {
-  const queryClient = new QueryClient();
   const Layout = () => {
     return (
       <>
-        <div className="bg-black flex flex-row font-outfit items-start mx-auto w-full h-full">
+        <div className="dark:bg-black bg-white bg-opacity-[14%] flex flex-row font-outfit items-start mx-auto w-full h-full">
           <Slider />
           <div className="relative h-screen w-full  ">
-            <div className="absolute opacity-[14%] h-screen w-full bg-color_white_page "></div>
-            <div className="absolute opacity-[14%] h-screen w-full bg-color_white_page "></div>
+            <div className="absolute opacity-[14%] h-screen w-full dark:bg-color_white_pag bg-white "></div>
+            <div className="absolute opacity-[14%] h-screen w-full dark:bg-color_white_page bg-white "></div>
             <div className="absolute h-[90%] w-full top-[10%] overflow-y-auto ">
               <div className="relative  flex flex-row items-center justify-center h-[90%] w-full ">
                 <Outlet />
@@ -70,7 +69,7 @@ function App() {
       path: "/Unique",
       element: <UniquePlayMusic />,
     },
-    { path: "/dcm", element: <MusicPlayer /> },
+    { path: "/DriverMode", element: <PageDriverMode /> },
     // {
     //   path: "/login",
     //   element: <Login />,
@@ -82,12 +81,7 @@ function App() {
     // },
   ]);
 
-  return (
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={route} />
-      <ReactQueryDevtools initialIsOpen="false" />
-    </QueryClientProvider>
-  );
+  return <RouterProvider router={route} />;
 }
 
 export default App;

@@ -69,7 +69,7 @@ export default function Index({ currentDuration, setCurrentDuration, audio }) {
   return (
     <div className="duration-200 ease-linear relative h-full">
       <div
-        className="text-2xl flex flex-col font-bold tracking-wide gap-5 break-all overflow-y-scroll no-scrollbar h-full p-5 items-center"
+        className="text-2xl flex flex-col font-poppins font-bold tracking-wide gap-5 break-all overflow-y-scroll no-scrollbar h-full p-5 items-center"
         data-id="lyrics-container"
       >
         {data &&
@@ -99,18 +99,6 @@ export default function Index({ currentDuration, setCurrentDuration, audio }) {
               {data.words}
             </span>
           ))}
-
-        <span className="text-base  ">
-          Lyrics provided by:{" "}
-          <a
-            target="_black"
-            style={{
-              color: "white",
-            }}
-          >
-            sync-lyrics
-          </a>
-        </span>
       </div>
     </div>
   );

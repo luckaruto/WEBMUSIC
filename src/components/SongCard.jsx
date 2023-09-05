@@ -7,8 +7,10 @@ import { playPause, setActiveSong } from "../Redux/features/playerSlice";
 // import { useGetDownLoadMusicQuery } from "../Redux/services/downloadedsportify";
 import Loader from "./Loader";
 import Error from "./Error";
+import Img from "./Img";
 
 import { useGetDownLoadMusicTempQuery } from "../Redux/services/downloadedsportifytemp";
+import { Button } from "flowbite-react";
 
 const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
   const dispatch = useDispatch();
@@ -58,23 +60,28 @@ const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
   // if (srcaudio.error) return <Error />;
 
   return (
-    <div className="flex flex-col w-[250px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer">
+    <div className="flex flex-col w-[250px] p-4 dark:bg-white/5 dark:bg-opacity-80 bg-[#b5b2b2] backdrop-blur-sm animate-slideup rounded-lg cursor-pointer">
       <div className="relative w-full h-56 group">
         <div
           className={`absolute inset-0 justify-start items-end bg-black bg-opacity-50 group-hover:flex ${
             activeSong.trackMetadata?.trackName ===
             dataMusic.trackMetadata?.trackName
-              ? "flex bg-black bg-opacity-70"
+              ? " bg-black bg-opacity-70 hidden"
               : "hidden"
           }`}
         >
-          <PlayPause
-            isPlaying={isPlaying}
-            activeSong={activeSong}
-            song={dataMusic}
-            data={data}
-            i={i}
-          />
+          <div className="flex flex-row justify-between w-full items-center">
+            <PlayPause
+              isPlaying={isPlaying}
+              activeSong={activeSong}
+              song={dataMusic}
+              data={data}
+              i={i}
+            />
+            <div className="mr-1 mb-2">
+              <Img src="/images/moreicon.svg" className="h-9 w-9"></Img>
+            </div>
+          </div>
         </div>
         <img
           alt="song_img"
@@ -84,12 +91,12 @@ const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
       </div>
 
       <div className="mt-4 flex flex-col">
-        <p className="font-semibold text-lg text-white truncate">
+        <p className="font-semibold font-poppins text-lg dark:text-white text-black truncate">
           <Link to={`/songs/${dataMusic?.key}`}>
             {song.trackMetadata?.trackName}
           </Link>
         </p>
-        <p className="text-sm truncate text-gray-300 mt-1">
+        <p className="text-sm truncate font-poppins text-[#777676] dark:text-gray-300 mt-1">
           <Link
             to={
               dataMusic.artists

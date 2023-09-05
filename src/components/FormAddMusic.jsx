@@ -13,19 +13,26 @@ const FormAddMusic = (props) => {
 
   const TitleInputRef = React.useRef();
   const lyrics = React.useRef();
-  const DurationInputRef = React.useRef();
   const ArtistInputRef = React.useRef();
   const [isFilePicked, setIsFilePicked] = React.useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const fileName = `${(+new Date()).toString(36)}.png`;
-    const LID = `${(+new Date()).toString(36)}`;
 
     console.log(TitleInputRef.current.value);
     console.log(lyrics.current.value);
-    console.log(DurationInputRef.current.value);
+    console.log(selectedImage);
+    console.log(selectedFile);
+
     console.log(ArtistInputRef.current.value);
+    props.HandleAddMusic(
+      TitleInputRef.current.value,
+      ArtistInputRef.current.value,
+      lyrics.current.value,
+      selectedImage,
+      selectedFile
+    );
+    props.HandleFalse();
   };
 
   const changeHandler = (event) => {
@@ -93,6 +100,7 @@ const FormAddMusic = (props) => {
                             <input
                               id="imageInput"
                               type="file"
+                              required
                               accept="image/*"
                               onChange={handleImageChange}
                               className="hidden"
@@ -119,6 +127,7 @@ const FormAddMusic = (props) => {
                             ref={TitleInputRef}
                             type="text"
                             name="username"
+                            required
                             id="username"
                             className="block flex-1 border-0 bg-transparent py-1.5 pl-1  focus:ring-0 sm:text-sm sm:leading-6"
                             placeholder="input name of your music"
@@ -139,6 +148,7 @@ const FormAddMusic = (props) => {
                             <input
                               ref={ArtistInputRef}
                               type="link"
+                              required
                               name="Artist"
                               id="Artist"
                               className="block flex-1 border-0 bg-transparent py-1.5 pl-1  placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
@@ -186,6 +196,7 @@ const FormAddMusic = (props) => {
                               name="file-upload"
                               type="file"
                               className="hidden"
+                              required
                               onChange={changeHandler}
                             />
                             <img src="/images/music.svg" className="h-full" />
@@ -217,6 +228,7 @@ const FormAddMusic = (props) => {
                 <button
                   type="button"
                   className="text-sm font-semibold leading-6 "
+                  onClick={props.HandleFalse}
                 >
                   Cancel
                 </button>

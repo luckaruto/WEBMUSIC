@@ -34,9 +34,7 @@ export default function DropDown(props) {
         )
       );
     } else if (selectedItem === "Duration") {
-      sortedData.sort(
-        (a, b) => a.trackMetadata.durationInMs - b.trackMetadata.durationInMs
-      );
+      sortedData.sort((a, b) => a.duration.localeCompare(b.duration));
     }
 
     if (selectsort === "Decreasing") {
@@ -50,15 +48,15 @@ export default function DropDown(props) {
     <Menu as="div" className="relative inline-block text-left">
       <div>
         <Menu.Button className="" ref={menuButtonRef}>
-          <img src="./images/sort.svg" alt="Sort" />
+          <img src="/images/sort.svg" alt="Sort" />
         </Menu.Button>
       </div>
 
       <Menu.Items
-        className=" absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-black bg-opacity-[40%] shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+        className=" absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md dark:bg-black dark:bg-opacity-[40%] bg-white bg-opacity-70 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
         ref={menuItemsRef}
       >
-        <div className="flex flex-col text-white items-center divide-y divide-gray-300">
+        <div className=" font-poppins font-semibold flex flex-col dark:text-white items-center dark:divide-y dark:divide-gray-300 divide-y divide-black">
           <div className="py-1 flex flex-col items-center">
             <Menu.Item className="p-2 cursor-pointer">
               {({ active }) => (

@@ -97,7 +97,7 @@ const PlaylistHeader = (props) => {
             alt="Selected"
           />
         ) : (
-          <img src="./images/music.svg" className="rounded-[8%] h-full" />
+          <img src="/images/music.svg" className="rounded-[8%] h-full" />
         )}
 
         {isHovered && (
@@ -119,7 +119,7 @@ const PlaylistHeader = (props) => {
 
       <div className="flex flex-col justify-between h-full">
         <EditText
-          className="text-3xl font-abhaya-libre text-white"
+          className="text-3xl  dark:text-white text-black font-poppins font-bold"
           onChange={(e) => {
             setvaluetitle(e.target.value);
           }}
@@ -127,7 +127,7 @@ const PlaylistHeader = (props) => {
           defaultValue={valuetitle == "" ? "PlayList no title" : valuetitle}
         />
         <EditTextarea
-          className="text-white w-[70%] mb-9  "
+          className="dark:text-white w-[70%] mb-9  text-black font-semibold "
           placeholder="Add description"
           defaultValue={description}
           value={description}

@@ -9,7 +9,9 @@ const SongsQueue = ({ songs }) => {
   return (
     <div className="ml-4 rounded-3xl text-white h-[90%]">
       <div className="flex flex-col  mt-2 h-full w-full">
-        <div className=" text-white text-3xl w-full">Queue</div>
+        <div className=" text-white font-poppins font-semibold text-3xl w-full">
+          Queue
+        </div>
         <ul className=" mt-2 flex flex-col h-full w-full ">
           {songs.map((song, index) => (
             <li
@@ -24,12 +26,18 @@ const SongsQueue = ({ songs }) => {
                   className=" h-[70%] w-auto rounded-md"
                 />
                 <div className="flex flex-col">
-                  <div className="text-white text-[100%]">{song.title}</div>
-                  <div className="text-zinc-400 text-[90%]">{song.artist}</div>
+                  <div className="text-white text-[100%] font-poppins font-semibold">
+                    {song.title}
+                  </div>
+                  <div className="text-zinc-400 text-[90%] font-poppins font-semibold">
+                    {song.artist}
+                  </div>
                 </div>
               </span>
 
-              <div className="text-white text-full">{song.duration}</div>
+              <div className="text-white text-full font-poppins font-semibold">
+                {song.duration}
+              </div>
             </li>
           ))}
         </ul>

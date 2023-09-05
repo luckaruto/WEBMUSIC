@@ -12,6 +12,7 @@ export default function SongMusic() {
   const dispatch = useDispatch();
   const [isInputVisible, setInputVisible] = React.useState(false);
   const searchInputRef = React.useRef(null);
+  const { darkmode } = useSelector((state) => state.player);
 
   const toggleInput = () => {
     setInputVisible(!isInputVisible);
@@ -27,6 +28,13 @@ export default function SongMusic() {
     setStateDelete(false);
   };
 
+  const [isDarkMode, setIsDarkMode] = React.useState(() => {
+    const savedDarkMode = localStorage.getItem("darkMode");
+    return savedDarkMode ? JSON.parse(savedDarkMode) : false;
+  });
+  React.useEffect(() => {
+    setIsDarkMode(darkmode);
+  }, [darkmode]);
   const handleDelete = () => {
     setData(() =>
       data.filter(
@@ -47,8 +55,10 @@ export default function SongMusic() {
 
   return (
     <div className="h-full w-full">
-      <div className="mt-1 ml-[9%] mr-[9%] flex flex-row justify-between">
-        <Text className="text-3xl text-white">Songs</Text>
+      <div className="mt-5 ml-[9%] mr-[9%] flex flex-row justify-between">
+        <Text className="text-3xl dark:text-white font-poppins font-bold">
+          Songs
+        </Text>
         <div className="flex flex-row gap-3 items-center">
           <div className="flex flex-row items-center relative ">
             <Button
@@ -57,7 +67,11 @@ export default function SongMusic() {
                 isInputVisible ? "left-5" : "right-0"
               }  `}
             >
-              <img src="./images/find.svg"></img>
+              {isDarkMode ? (
+                <img src="/images/find.svg"></img>
+              ) : (
+                <img src="/images/findwhite.svg"></img>
+              )}
             </Button>
             {isInputVisible && (
               <input
@@ -84,7 +98,7 @@ export default function SongMusic() {
                 id="search-input"
                 placeholder="Filter"
                 required
-                className="pl-7 ml-4 border-2 py-1 border-[#bf6868] rounded-[11.85px] w-4/5 bg-[#535050] text-[#FFFFFF] "
+                className="pl-7 ml-4 border-2 py-1 border-[#bf6868] text-black placeholder:text-black bg-white font-poppins dark:placeholder:text-white rounded-[11.85px] w-4/5 dark:bg-[#535050] dark:text-[#FFFFFF] "
               />
             )}
           </div>
@@ -92,15 +106,18 @@ export default function SongMusic() {
           <DropDown SortData={SortData} chartData={data}></DropDown>
         </div>
       </div>
-      <div className=" mt-[2%] ml-[5%] mr-[5%] flex flex-row items-center gap-9 justify-between bg-white rounded-md p-2 px-4 bg-opacity-[10%] text-white">
-        <Text className="text-xl">Title</Text>
-        <Text className="text-xl">Artist</Text>
-        <Text className="text-xl mr-[10%]">Duration</Text>
+
+      <div className=" bg-black mt-[2%] ml-[5%] mr-[5%] flex flex-row items-center gap-9 justify-between dark:bg-white dark:bg-opacity-[10%] rounded-md p-2 px-4 bg-opacity-[10%] dark:text-white">
+        <Text className="text-xl font-poppins font-medium ">Title</Text>
+        <Text className="text-xl font-poppins font-medium">Artist</Text>
+        <Text className="text-xl font-poppins font-medium mr-[10%]">
+          Duration
+        </Text>
       </div>
       <div className=" ml-[5%] mr-[5%] flex flex-col h-[80%] gap-5 mt-6 overflow-y-auto no-scrollbar  ">
         {data.map((song, i) => (
           <div
-            className=" cursor-pointer hover:bg-[#5e5e5e] rounded-[6px] relative "
+            className=" cursor-pointer hover:bg-black hover:bg-opacity-[10%] dark:hover:bg-[#5e5e5e] rounded-[6px] relative "
             key={i}
           >
             <div
@@ -117,12 +134,16 @@ export default function SongMusic() {
                 src={song.trackMetadata.displayImageUri}
                 className="h-12 w-12 rounded-[6px]"
               />
-
-              <div className="text-xl text-white flex items-center truncate w-[30%]">
-                {song.trackMetadata?.trackName}
-              </div>
-              <div className="text-sm text-[#B3B3B3] items-center absolute left-[42%] right-0">
-                {song.trackMetadata?.artists[0].name}
+              <div className="flex flex-row w-[95%] items-center justify-between">
+                <div className="text-xl dark:text-white text-black font-poppins flex items-center truncate w-[25%] ">
+                  {song.trackMetadata?.trackName}
+                </div>
+                <div className="  text-sm dark:text-[#B3B3B3] text-black text-opacity-[60%] font-poppins items-center w-[30%] flex justify-start">
+                  {song.trackMetadata?.artists[0].name}
+                </div>
+                <div className=" mr-[5%]  text-sm dark:text-[#B3B3B3]  text-black text-opacity-[60%] font-poppins items-center  w-[10%]  ">
+                  {song.duration}
+                </div>
               </div>
             </div>
             <Button

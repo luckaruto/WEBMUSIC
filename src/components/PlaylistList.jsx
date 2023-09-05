@@ -9,7 +9,7 @@ const PlaylistList = ({ albums }) => {
   };
 
   return (
-    <div className="ml-4 rounded-3xl text-white h-[90%]">
+    <div className="ml-4 rounded-3xl text-white h-[90%] font-poppins font-semibold">
       <div className=" flex flex-col  mt-2 h-full w-full">
         <div className=" text-white text-3xl w-full">Playlist lists</div>
 

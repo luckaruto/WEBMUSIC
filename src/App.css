@@ -27,18 +27,31 @@
   color: white;
 }
 
-@media screen and (-webkit-min-device-pixel-ratio: 0) {
+/* Default styles for the input range thumb */
+input[type="range"]::-webkit-slider-thumb {
+  width: 15px;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 15px;
+  cursor: ew-resize;
+  border-radius: 50%;
+}
 
-  input[type="range"]::-webkit-slider-thumb {
-    width: 15px;
-    -webkit-appearance: none;
-    appearance: none;
-    height: 15px;
-    cursor: ew-resize;
+/* Light mode styles */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  input[type="range"]:not(.dark-mode)::-webkit-slider-thumb {
     background: #FFF;
     box-shadow: -405px 0 0 400px #fffbf7;
-    border-radius: 50%;
+  }
+}
 
+/* Dark mode styles */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  input[type="range"].dark-mode::-webkit-slider-thumb {
+    background: #333;
+    /* Adjust the color for dark mode */
+    box-shadow: -405px 0 0 400px #000;
+    /* Adjust the shadow color for dark mode */
   }
 }
 
@@ -150,5 +163,40 @@
 
   100% {
     transform: translateX(-100%);
+  }
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Apply the animation to the element */
+.animate-bg-gradient  {
+   background: linear-gradient(-45deg, #ee7752, #b38999, #4e7380, #010202);
+   background-size: 400% 400%;
+   animation: gradient 30s ease infinite;
+   height: 100vh;
+ }
+
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
   }
 }

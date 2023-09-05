@@ -25,7 +25,10 @@ export default function ModelAdd(props) {
         <>
           <div className=" modalTeacher h-[80%]  left-0 right-0 flex items-center justify-center">
             <div className="rounded-xl bg-black bg-opacity-[60%] h-full w-[80%] text-white p-4 flex flex-col items-center">
-              <FormAddMusic></FormAddMusic>
+              <FormAddMusic
+                HandleAddMusic={props.HandleAddMusic}
+                HandleFalse={props.HandleFalse}
+              ></FormAddMusic>
             </div>
           </div>
         </>,

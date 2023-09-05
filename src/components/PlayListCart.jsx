@@ -12,7 +12,7 @@ export default function PlayListCart({ playlist, index }) {
   const [dataMusic, setDataMusic] = useState(playlist);
   return (
     <div
-      className="hover:bg-neutral-500 h-fit flex flex-col w-[250px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer"
+      className="hover:bg-neutral-500 h-fit flex flex-col w-[250px] p-4 dark:bg-white/5 bg-[#aaa7a7]  dark:bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer"
       onClick={() => {
         navigate(`/playlist/${index}`);
       }}
@@ -26,7 +26,7 @@ export default function PlayListCart({ playlist, index }) {
       </div>
 
       <div className="mt-4 flex flex-col">
-        <p className="text-xl truncate text-gray-300 mt-1">
+        <p className="text-xl truncate dark:text-gray-300 font-poppins font-semibold mt-1">
           <Text>{dataMusic.title}</Text>
         </p>
       </div>

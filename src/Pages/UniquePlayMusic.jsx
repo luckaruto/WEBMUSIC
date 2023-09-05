@@ -170,7 +170,7 @@ export default function UniquePlayMusic() {
   console.log(activeSong);
   const navigate = useNavigate();
   return (
-    <div className=" relative flex w-full h-screen bg-gradient-to-r from-[#000000] to-[#EC1052] items-center justify-center">
+    <div className=" relative flex w-full h-screen bg-gradient-to-r from-[#a47373] to-[#8b4e60] items-center justify-center animate-bg-gradient">
       <Button
         className="absolute top-5 left-5 text-[#d34141]"
         onClick={() => navigate(-1)}

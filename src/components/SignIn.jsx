@@ -35,7 +35,7 @@ const SignInModal = (props) => {
                     </Text>
                     <Img
                       className="h-[336px] w-[332px]"
-                      src="./images/LogoLogin.svg"
+                      src="/images/LogoLogin.svg"
                       alt="57907191"
                     />
                   </div>
@@ -48,7 +48,7 @@ const SignInModal = (props) => {
                       leftIcon={
                         <Img
                           className="h-6 mr-[23px]"
-                          src="./images/img_google.svg"
+                          src="/images/img_google.svg"
                           alt="google"
                         />
                       }
@@ -85,7 +85,7 @@ const SignInModal = (props) => {
                               prefix={
                                 <Img
                                   className="mt-auto mb-0.5 h-[18px] mr-[15px]"
-                                  src="./images/img_message_24_outline.svg"
+                                  src="/images/img_message_24_outline.svg"
                                   alt="message / 24 / Outline"
                                 />
                               }
@@ -107,14 +107,14 @@ const SignInModal = (props) => {
                             prefix={
                               <Img
                                 className="h-[18px] mr-[15px] my-px"
-                                src="./images/img_lock.svg"
+                                src="/images/img_lock.svg"
                                 alt="lock"
                               />
                             }
                             suffix={
                               <Img
                                 className="h-[18px] ml-[35px] my-px"
-                                src="./images/img_eye.svg"
+                                src="/images/img_eye.svg"
                                 alt="eye"
                               />
                             }
@@ -135,14 +135,14 @@ const SignInModal = (props) => {
                             prefix={
                               <Img
                                 className="h-[18px] mr-[15px] my-px"
-                                src="./images/img_lock.svg"
+                                src="/images/img_lock.svg"
                                 alt="lock"
                               />
                             }
                             suffix={
                               <Img
                                 className="h-[18px] ml-[35px] my-px"
-                                src="./images/img_eye.svg"
+                                src="/images/img_eye.svg"
                                 alt="eye"
                               />
                             }

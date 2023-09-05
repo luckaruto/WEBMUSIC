@@ -60,6 +60,29 @@ export default function ArtistCreate() {
 
     dispatch(setArtist(temp));
   };
+  const HandleAddMusic = (title, artists, lyrics, image, audio) => {
+    const music = {
+      trackMetadata: {
+        trackName: title,
+        displayImageUri: image,
+        artists: [
+          {
+            name: artists,
+            spotifyUri: "spotify:artist:4gzpq5DPGxSnKTe4SA8HAU",
+            externalUrl: "",
+          },
+        ],
+      },
+      audio: audio,
+      lyrics: lyrics,
+    };
+    console.log(music);
+    console.log(Artist.music);
+    const temp = { ...Artist };
+    temp.music = [...temp.music, music];
+
+    dispatch(setArtist(temp));
+  };
   const [stateAdd, setStateAdd] = React.useState(false);
 
   React.useEffect(() => {
@@ -69,6 +92,7 @@ export default function ArtistCreate() {
     <div className=" flex flex-col w-[90%] h-full gap-9 ml-6   ">
       <HeaderArtist
         HandleChangeValue={HandleChangeValue}
+        HandleAddMusic={HandleAddMusic}
         HandleTrue={() => {
           setStateAdd(true);
         }}
@@ -89,6 +113,7 @@ export default function ArtistCreate() {
           HandleFalse={() => {
             setStateAdd(false);
           }}
+          HandleAddMusic={HandleAddMusic}
         />
       )}
     </div>

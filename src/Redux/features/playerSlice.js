@@ -7,6 +7,7 @@ const initialState = {
   isPlaying: false,
   activeSong: {},
   genreListId: "",
+  darkmode: null,
   Artist: {
     id: "Playlist1",
     title: "Nguyễn Tấn Lực",
@@ -1720,9 +1721,15 @@ const playerSlice = createSlice({
     playPause: (state, action) => {
       state.isPlaying = action.payload;
     },
+    setCurrentSong: (state, action) => {
+      state.currentSongs = action.payload;
+    },
 
     selectGenreListId: (state, action) => {
       state.genreListId = action.payload;
+    },
+    setDarkmode: (state, action) => {
+      state.darkmode = action.payload;
     },
   },
 });
@@ -1732,7 +1739,9 @@ export const {
   nextSong,
   prevSong,
   playPause,
+  setDarkmode,
   selectGenreListId,
+  setCurrentSong,
   setListPlayList,
   setArtist,
 } = playerSlice.actions;
