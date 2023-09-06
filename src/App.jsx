@@ -15,11 +15,15 @@ import PlaylistPage from "./Pages/PlaylistPage.jsx";
 import TopChartsComponent from "./Pages/TextPage.jsx";
 import UniquePlayMusic from "./Pages/UniquePlayMusic.jsx";
 import MusicPlayer from "./Pages/TestThu.jsx";
+
+import SearchPage from "./Pages/SearchPage.jsx";
+
 import SongPage from "./Pages/SongPage.jsx";
 import AddPlaylistPage from "./Pages/AddPlayListPage.jsx";
 import Footer from "./components/Footer.jsx";
 import ArtistPageCreate from "./Pages/ArtistPageCreate.jsx";
 import PageDriverMode from "./Pages/PageDriverMode.jsx";
+
 
 function App() {
   const Layout = () => {
@@ -56,6 +60,8 @@ function App() {
         { path: "/playlist", element: <AllPlayListPage /> },
         { path: "/addplaylist", element: <AddPlaylistPage /> },
         { path: "/artistcreate", element: <ArtistPageCreate /> },
+
+        { path: "/search", element: <SearchPage /> },
 
         // {
         //   path: "/courses",

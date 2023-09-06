@@ -8,7 +8,7 @@ export const spotify = createApi({
     prepareHeaders: (headers) => {
       headers.set(
         "X-RapidAPI-Key",
-        "2d15467778mshefa5da6b8c65800p1e1da7jsnbdaf6eae3dd3"
+        "23f9191a61msh2b609a4dc2d299ep1aa38cjsnb964cec3dca2"
       );
 
       return headers;
