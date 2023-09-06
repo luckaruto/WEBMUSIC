@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import DropDownAdd from "./DropDownAdd";
 
 import PlayPause from "./PlayPause";
 import { playPause, setActiveSong } from "../Redux/features/playerSlice";
@@ -78,8 +79,8 @@ const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
               data={data}
               i={i}
             />
-            <div className="mr-1 mb-2">
-              <Img src="/images/moreicon.svg" className="h-9 w-9"></Img>
+            <div className="mr-1 mb-2" onClick={() => {}}>
+              <DropDownAdd></DropDownAdd>
             </div>
           </div>
         </div>
