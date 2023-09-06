@@ -132,6 +132,7 @@ module.exports = {
         gradient: "linear-gradient(180deg ,#0a023c00,#0a033c,#0a023c00)",
       },
       fontFamily: {
+        poppins: ["Poppins", "sans"],
         "abhaya-libre": ["Abhaya Libre", "sans"], // Add 'sans', 'serif', 'monospace', etc. as fallbacks if needed
       },
     },

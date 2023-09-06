@@ -28,8 +28,14 @@ const formatTime = (time) => {
 const PlayMusic = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { activeSong, isPlaying, currentIndex, currentSongs, isActive } =
-    useSelector((state) => state.player);
+  const {
+    activeSong,
+    isPlaying,
+    currentIndex,
+    currentSongs,
+    darkmode,
+    isActive,
+  } = useSelector((state) => state.player);
   const [state, setState] = React.useState({
     isRandom: false,
     isRepeat: false,
@@ -161,6 +167,14 @@ const PlayMusic = () => {
     );
   };
 
+  const [isDarkMode, setIsDarkMode] = React.useState(() => {
+    const savedDarkMode = localStorage.getItem("darkMode");
+    return savedDarkMode ? JSON.parse(savedDarkMode) : false;
+  });
+  React.useEffect(() => {
+    setIsDarkMode(darkmode);
+  }, [darkmode]);
+
   React.useEffect(() => {
     initData();
     if (isPlaying) {
@@ -177,6 +191,7 @@ const PlayMusic = () => {
         src={activeSong?.audio}
         controls={false}
         id="jp_audio_0"
+        type="audio/mpeg"
         onTimeUpdate={(e) => {
           handleTimeupdate(e);
         }}
@@ -185,30 +200,46 @@ const PlayMusic = () => {
       />
 
       <div className=" flex flex-row gap-[30px] items-center h-full justify-center p-[18px] ">
-        <div className=" lg:h-[10%] md:h-[60%] ml-4 bg-color_bar rounded-[45px] w-[80%] flex flex-row items-center justify-between gap-5 p-1 px-5 ">
+        <div className=" lg:h-[10%] md:h-[60%] ml-4 dark:bg-color_bar bg-[#F4F4F4] rounded-[45px] w-[80%] flex flex-row items-center justify-between gap-5 p-1 px-5 ">
           <div className="flex flex-row items-center gap-4 mx-4">
             <Button
-              className="text-white text-lg flex font-abhaya-libre font-extrabold  tracking-[0.18px] "
+              className="dark:text-white text-black text-lg flex font-poppins font-bold tracking-[0.18px] "
               onClick={handleRandom}
             >
-              <Img
-                className="h-7 w-7 rounded-lg items-center"
-                src="./images/icon_random.svg"
-                alt="user One"
-              ></Img>
+              {isDarkMode ? (
+                <Img
+                  className="h-7 w-7 rounded-lg items-center"
+                  src="/images/icon_random.svg"
+                  alt="user One"
+                ></Img>
+              ) : (
+                <Img
+                  className="h-7 w-7 rounded-lg items-center"
+                  src="/images/icon_random_white.svg"
+                  alt="user One"
+                ></Img>
+              )}
             </Button>
             <Button
-              className="text-white text-lg flex font-abhaya-libre font-extrabold  tracking-[0.18px] "
+              className="dark:text-white text-black text-lg flex font-poppins font-bold tracking-[0.18px] "
               onClick={handlePrevSong}
             >
-              <Img
-                className="h-7 w-7 rounded-lg items-center"
-                src="./images/icon_back.svg"
-                alt="user One"
-              ></Img>
+              {isDarkMode ? (
+                <Img
+                  className="h-7 w-7 rounded-lg items-center"
+                  src="/images/icon_back.svg"
+                  alt="user One"
+                ></Img>
+              ) : (
+                <Img
+                  className="h-7 w-7 rounded-lg items-center"
+                  src="/images/icon_back_white.svg"
+                  alt="user One"
+                ></Img>
+              )}
             </Button>
             <Button
-              className="text-white text-lg flex font-abhaya-libre font-extrabold  tracking-[0.18px] "
+              className="dark:text-white text-black text-lg flex font-poppins font-bold tracking-[0.18px] "
               onClick={() => {
                 if (state.isPlay) {
                   audio.pause();
@@ -222,62 +253,96 @@ const PlayMusic = () => {
               }}
             >
               {state.isPlay ? (
+                isDarkMode ? (
+                  <Img
+                    className="h-7 w-7 rounded-lg items-center"
+                    src="/images/icon_play.svg"
+                    alt="user One"
+                  />
+                ) : (
+                  <Img
+                    className="h-7 w-7 rounded-lg items-center"
+                    src="/images/icon_play_white.svg"
+                    alt="user One"
+                  />
+                )
+              ) : isDarkMode ? (
                 <Img
                   className="h-7 w-7 rounded-lg items-center"
-                  src="./images/icon_play.svg"
+                  src="/images/icon_pause.svg"
                   alt="user One"
                 />
               ) : (
                 <Img
                   className="h-7 w-7 rounded-lg items-center"
-                  src="./images/icon_pause.svg"
+                  src="/images/icon_pause_white.svg"
                   alt="user One"
                 />
               )}
             </Button>
             <Button
-              className="text-white text-lg flex font-abhaya-libre font-extrabold  tracking-[0.18px] "
+              className="dark:text-white text-lg flex font-poppins font-bold tracking-[0.18px] "
               onClick={handleNextSong}
             >
-              <Img
-                className="h-7 w-7 rounded-lg items-center"
-                src="./images/icon_next.svg"
-                alt="user One"
-              ></Img>
+              {isDarkMode ? (
+                <Img
+                  className="h-7 w-7 rounded-lg items-center"
+                  src="/images/icon_next.svg"
+                  alt="user One"
+                ></Img>
+              ) : (
+                <Img
+                  className="h-7 w-7 rounded-lg items-center"
+                  src="/images/icon_next_white.svg"
+                  alt="user One"
+                ></Img>
+              )}
             </Button>
-            <Button className="text-white text-lg flex font-abhaya-libre font-extrabold  tracking-[0.18px] ">
-              <Img
-                className="h-7 w-7 rounded-lg items-center"
-                src="./images/icon_loop.svg"
-                alt="user One"
-              ></Img>
+            <Button className="dark:text-white text-lg flex font-poppins font-bold tracking-[0.18px] ">
+              {isDarkMode ? (
+                <Img
+                  className="h-7 w-7 rounded-lg items-center"
+                  src="/images/icon_loop.svg"
+                  alt="user One"
+                ></Img>
+              ) : (
+                <Img
+                  className="h-7 w-7 rounded-lg items-center"
+                  src="/images/icon_loop_white.svg"
+                  alt="user One"
+                ></Img>
+              )}
             </Button>
           </div>
-          <div
-            className="flex flex-row gap-4 w-[40%] h-[50%]"
-            onClick={() => navigate("/test")}
-          >
-            <div className="relative ml-4 w-[80%] h-[100%] flex flex-col items-center ">
-              <div className="absolute opacity-[14%] h-full  w-full md:h-[10%]  bg-[#000000] top-0 rounded-[11.85px] "></div>
+          <div className="flex flex-row gap-4 w-[40%] h-[50%]">
+            <div className="bg-[#000000] bg-opacity-[40%]   relative ml-4 w-[80%] h-[100%] flex flex-col items-center dark:bg-[#000000] dark:bg-opacity-[14%] rounded-[11.85px]  ">
               <div className="flex flex-row items-start justify-start gap-x-3 h-[80px] md:h-[30%] truncate w-[100%]  ">
-                <Img
-                  className="w-[20%] rounded-[11.85px]"
-                  src={activeSong?.trackMetadata?.displayImageUri}
-                  alt="user One"
-                />
+                <Button
+                  className="h-[90%] w-[25%] "
+                  onClick={() => {
+                    navigate("/Unique");
+                  }}
+                >
+                  <Img
+                    className="h-full object-cover rounded-[11.85px]"
+                    src={activeSong?.trackMetadata?.displayImageUri}
+                    alt="user One"
+                  />
+                </Button>
+
                 <div className="flex flex-col items-start justify-start w-full truncate">
-                  <Text className="text-white_text font-abhaya-libre font-extrabold text-2xl tracking-[0.18px] truncate  md:text-xs ">
+                  <Text className="dark:text-white_text font-poppins font-bold text-2xl tracking-[0.18px] truncate  md:text-xs ">
                     {activeSong?.trackMetadata?.trackName}
                   </Text>
-                  <Text className="  text-[#FFFFFF] text-sm tracking-[0.14px] opacity-[64%] ">
+                  <Text className="  dark:text-[#FFFFFF] text-[#FFFFFF] text-opacity-70 text-sm font-poppins font-bold tracking-[0.14px] opacity-[64%] ">
                     {activeSong?.trackMetadata?.artists[0].name}
                   </Text>
 
                   <div className="mt-2 flex flex-row justify-between items-start w-full mb-1">
-                    <Text className="text-[#FFFFFF] text-xs tracking-[0.14px] opacity-[64%]">
+                    <Text className="dark:text-[#FFFFFF] text-xs font-poppins text-[#FFFFFF] text-opacity-70  font-bold tracking-[0.14px] opacity-[64%]">
                       {formatTime(currentTrackMoment)}
                     </Text>
-                    <Text className="text-[#FFFFFF] text-xs tracking-[0.14px] opacity-[64%] mr-2">
+                    <Text className="dark:text-[#FFFFFF] text-xs font-poppins text-[#FFFFFF] text-opacity-70  font-bold tracking-[0.14px] opacity-[64%] mr-2">
                       {currentTrackDuration}
                     </Text>
                   </div>
@@ -299,51 +364,85 @@ const PlayMusic = () => {
             </div>
           </div>
           <div className="flex flex-row items-center gap-4 mx-4">
-            <Button className="text-white text-lg flex font-abhaya-libre font-extrabold  tracking-[0.18px] ">
-              <Img
-                className="h-7 w-7 rounded-lg items-center"
-                src="./images/icon_lyric.svg"
-                alt="user One"
-              ></Img>
+            <Button className="text-white text-lg flex font-poppins font-bold tracking-[0.18px] ">
+              {isDarkMode ? (
+                <Img
+                  className="h-7 w-7 rounded-lg items-center"
+                  src="/images/icon_lyric.svg"
+                  alt="user One"
+                ></Img>
+              ) : (
+                <Img
+                  className="h-7 w-7 rounded-lg items-center"
+                  src="/images/icon_lyric_white.svg"
+                  alt="user One"
+                ></Img>
+              )}
             </Button>
-            <Button className="text-white text-lg flex font-abhaya-libre font-extrabold  tracking-[0.18px] ">
-              <Img
-                className="h-7 w-7 rounded-lg items-center"
-                src="./images/icon_more.svg"
-                alt="user One"
-              ></Img>
+            <Button className="text-white text-lg flex font-poppins font-bold tracking-[0.18px] ">
+              {isDarkMode ? (
+                <Img
+                  className="h-7 w-7 rounded-lg items-center"
+                  src="/images/icon_more.svg"
+                  alt="user One"
+                ></Img>
+              ) : (
+                <Img
+                  className="h-7 w-7 rounded-lg items-center"
+                  src="/images/icon_more_white.svg"
+                  alt="user One"
+                ></Img>
+              )}
             </Button>
             {!slash ? (
               <Button
-                className="text-white text-lg flex font-abhaya-libre font-extrabold  tracking-[0.18px] "
+                className="dark:text-white text-lg flex font-poppins font-bold tracking-[0.18px] "
                 onClick={() => {
                   setSlash(true);
                   audio.volume = 0;
                 }}
               >
-                <Img
-                  className="h-7 w-7 rounded-lg items-center"
-                  src="./images/icon_speaker.svg"
-                  alt="user One"
-                />
+                {isDarkMode ? (
+                  <Img
+                    className="h-7 w-7 rounded-lg items-center"
+                    src="/images/icon_speaker.svg"
+                    alt="user One"
+                  />
+                ) : (
+                  <Img
+                    className="h-7 w-7 rounded-lg items-center"
+                    src="/images/icon_speaker_white.svg"
+                    alt="user One"
+                  />
+                )}
               </Button>
             ) : (
               <Button
-                className="text-white text-lg flex font-abhaya-libre font-extrabold  tracking-[0.18px] "
+                className="text-white text-lg flex font-poppins font-bold tracking-[0.18px] "
                 onClick={() => {
                   setSlash(false);
                   audio.volume = volume;
                 }}
               >
-                <Img
-                  className="h-7 w-7 rounded-lg items-center"
-                  src="./images/speakerslash.svg"
-                  alt="user One"
-                />
+                {isDarkMode ? (
+                  <Img
+                    className="h-7 w-7 rounded-lg items-center"
+                    src="/images/speakerslash.svg"
+                    alt="user One"
+                  />
+                ) : (
+                  <Img
+                    className="h-7 w-7 rounded-lg items-center"
+                    src="/images/speakerslashwhite.svg"
+                    alt="user One"
+                  />
+                )}
               </Button>
             )}
             <input
-              className=" rounded-lg overflow-hidden appearance-none bg-gray-400 h-3 w-[30%]"
+              className={`rounded-lg overflow-hidden appearance-none bg-gray-400  h-3 w-[30%] ${
+                !isDarkMode ? "dark-mode" : ""
+              }`}
               type="range"
               min={0}
               max={1}

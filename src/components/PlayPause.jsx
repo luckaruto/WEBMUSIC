@@ -18,7 +18,8 @@ const PlayPause = ({ isPlaying, activeSong, song, data, i }) => {
 
   // if (srcaudio.error) return <Error />;
 
-  return isPlaying && activeSong?.title === song.title ? (
+  return isPlaying &&
+    activeSong?.trackMetadata?.trackName === song?.trackMetadata?.trackName ? (
     <FaPauseCircle
       size={35}
       className="text-[#FF293F] bg-white rounded-full ml-2 mb-2"
@@ -32,7 +33,10 @@ const PlayPause = ({ isPlaying, activeSong, song, data, i }) => {
       className="text-[#FF293F] bg-white rounded-full  ml-2 mb-2"
       onClick={() => {
         dispatch(setActiveSong({ song, data, i }));
-        dispatch(playPause(true));
+        dispatch(playPause(false));
+        setTimeout(() => {
+          dispatch(playPause(true));
+        }, 500);
       }}
     />
   );

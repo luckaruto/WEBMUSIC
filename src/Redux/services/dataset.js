@@ -25,7 +25,7 @@ function useTopCharts() {
       };
       const array = [];
       if (data) {
-        for (const song of data.slice(0, 10)) {
+        for (const song of data.slice(0, 100)) {
           const url = `https://spotify-downloader-api.p.rapidapi.com/Home/GetSpotifyUserInfo?Tracklink=${encodeURIComponent(
             convertToTrackURL(song.trackMetadata?.trackUri)
           )}`;

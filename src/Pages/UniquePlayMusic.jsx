@@ -6,7 +6,7 @@ import { playPause, nextSong } from "../Redux/features/playerSlice";
 import { useSelector, useDispatch } from "react-redux";
 import Index from "./TestThu";
 import Toolsbar from "../components/Toolsbar";
-
+import { useNavigate } from "react-router-dom";
 let audio = null;
 
 const formatTime = (time) => {
@@ -168,9 +168,19 @@ export default function UniquePlayMusic() {
     audio.volume = volume;
   }, [isPlaying, volume, activeSong]);
   console.log(activeSong);
-
+  const navigate = useNavigate();
   return (
-    <div className=" relative flex w-full h-screen bg-gradient-to-r from-[#000000] to-[#EC1052] items-center justify-center">
+    <div className=" relative flex w-full h-screen bg-gradient-to-r from-[#a47373] to-[#8b4e60] items-center justify-center animate-bg-gradient">
+      <Button
+        className="absolute top-5 left-5 text-[#d34141]"
+        onClick={() => navigate(-1)}
+      >
+        <Img
+          className="h-7 w-7 rounded-lg items-center"
+          src="./images/back.svg"
+          alt="user One"
+        />
+      </Button>
       <div className="flex flex-row w-[80%] h-[80%] gap-7 justify-center items-center">
         <div className="flex flex-col h-full w-[40%] items-center">
           <Img

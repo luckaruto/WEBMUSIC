@@ -12,13 +12,13 @@ function usePlayNow() {
         method: "GET",
         headers: {
           "X-RapidAPI-Key":
-            "2d15467778mshefa5da6b8c65800p1e1da7jsnbdaf6eae3dd3",
+            "cde6ea471dmsh8007b520158e720p17d530jsn25a9ac5a5ca4",
           "X-RapidAPI-Host": "youtube-mp36.p.rapidapi.com",
         },
       };
       const array = [];
       if (Object.keys(data).length > 0) {
-        for (const song of data?.slice(0, 10)) {
+        for (const song of data?.slice(0, 100)) {
           const url = `https://youtube-mp36.p.rapidapi.com/dl?id=${
             song?.audio?.split("=")[1]
           }`;
@@ -30,6 +30,7 @@ function usePlayNow() {
             const modifiedData = {
               ...song,
               audio: result?.link,
+              duration: result?.duration,
             };
             array.push(modifiedData);
           } catch (error) {
