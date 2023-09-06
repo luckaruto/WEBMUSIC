@@ -30,8 +30,8 @@ function App() {
           <div className="relative h-screen w-full  ">
             <div className="absolute opacity-[14%] h-screen w-full dark:bg-color_white_pag bg-white "></div>
             <div className="absolute opacity-[14%] h-screen w-full dark:bg-color_white_page bg-white "></div>
-            <div className="absolute h-[90%] w-full top-[10%] overflow-y-auto ">
-              <div className="relative  flex flex-row items-center justify-center h-[90%] w-full ">
+            <div className="absolute h-[90%] w-full top-[10%] overflow-y-auto no-scrollbar ">
+              <div className="relative  flex flex-row items-center justify-center h-[100%] w-full ">
                 <Outlet />
               </div>
               <Footer />
