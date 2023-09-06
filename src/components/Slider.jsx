@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Text from "./Text";
 import Img from "./Img";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,14 @@ import { useParams, useSearchParams } from "react-router-dom";
 export default function Slider() {
   const params = useParams();
   const navigate = useNavigate();
+
+  const [searchKeyword, setsearchKeyword] = React.useState("");
+
+  // useEffect(() => {
+  //   localStorage.setItem("searchKeyword", searchKeyword);
+  // }, [searchKeyword]);
+
+
   const { activeSong, isPlaying, ListPlaylist, darkmode } = useSelector(
     (state) => state.player
   );
@@ -19,6 +27,7 @@ export default function Slider() {
   React.useEffect(() => {
     setIsDarkMode(darkmode);
   }, [ListPlaylist, darkmode]);
+
   return (
     <div className="relative w-1/5 h-screen">
       <div className="absolute dark:opacity-[14%] h-screen w-full dark:bg-back_slide_bar bg-[#FAFAFA] bg-opacity-[90%] "></div>
@@ -66,6 +75,7 @@ export default function Slider() {
                     className="  text-black placeholder-[#282828] dark:placeholder-[#d9d9d9] bg-[#000000] bg-opacity-[0%] pl-7 ml-4 border-2 py-1 border-[#382C2C] rounded-[11.85px] w-4/5 dark:bg-[#000000] dark:text-[#FFFFFF] font-poppins font-extrabold"
                     placeholder="Search"
                     required
+                    onChange={(e) => {setsearchKeyword(e.target.value); localStorage.setItem("searchKeyword", e.target.value); navigate("/search")}}
                   ></input>
                 </div>
               </form>
