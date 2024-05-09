@@ -1,13 +1,10 @@
 About some screen of web: 
 
-
-<img width="1728" alt="Ảnh màn hình 2024-05-09 lúc 16 38 04" src="https://github.com/luckaruto/WEBMUSIC/assets/94817311/415014ff-b73f-457b-92f4-3e47c2ecfec8">
 <img width="1728" alt="Ảnh màn hình 2024-05-09 lúc 16 37 57" src="https://github.com/luckaruto/WEBMUSIC/assets/94817311/dea8ac37-22ee-48bc-891a-14f9724d3f66">
 <img width="1728" alt="Ảnh màn hình 2024-05-09 lúc 16 37 36" src="https://github.com/luckaruto/WEBMUSIC/assets/94817311/69f8cf6e-9eee-416f-9793-58ecc8785a49">
 <img width="1559" alt="Ảnh màn hình 2024-05-09 lúc 16 50 58" src="https://github.com/luckaruto/WEBMUSIC/assets/94817311/5597e1da-bcab-4df3-8ee1-51ca51d64541">
 <img width="1559" alt="Ảnh màn hình 2024-05-09 lúc 16 48 48" src="https://github.com/luckaruto/WEBMUSIC/assets/94817311/5f6f6ef8-031d-445d-8f98-5b45791335d1">
 <img width="1728" alt="Ảnh màn hình 2024-05-09 lúc 16 38 04" src="https://github.com/luckaruto/WEBMUSIC/assets/94817311/f8e895cc-5e59-4476-92d4-4bac4f925add">
-<img width="1728" alt="Ảnh màn hình 2024-05-09 lúc 16 37 57" src="https://github.com/luckaruto/WEBMUSIC/assets/94817311/d3d0195c-9db3-4897-b959-d622e8bb11b2">
 <img width="1728" alt="Ảnh màn hình 2024-05-09 lúc 16 37 36" src="https://github.com/luckaruto/WEBMUSIC/assets/94817311/0074a2e0-9284-4032-94ac-629d3bd1752e">
 # Getting Started with Create React App
 
