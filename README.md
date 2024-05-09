@@ -1,6 +1,6 @@
 About some screen of web: 
 
-<img width="1559" alt="Ảnh màn hình 2024-05-09 lúc 16 48 48" src="https://github.com/luckaruto/WEBMUSIC/assets/94817311/b8e60d0f-07f3-4cfb-bdc2-96305ca4ec40">
+
 <img width="1728" alt="Ảnh màn hình 2024-05-09 lúc 16 38 04" src="https://github.com/luckaruto/WEBMUSIC/assets/94817311/415014ff-b73f-457b-92f4-3e47c2ecfec8">
 <img width="1728" alt="Ảnh màn hình 2024-05-09 lúc 16 37 57" src="https://github.com/luckaruto/WEBMUSIC/assets/94817311/dea8ac37-22ee-48bc-891a-14f9724d3f66">
 <img width="1728" alt="Ảnh màn hình 2024-05-09 lúc 16 37 36" src="https://github.com/luckaruto/WEBMUSIC/assets/94817311/69f8cf6e-9eee-416f-9793-58ecc8785a49">
